@@ -101,6 +101,9 @@ Calinou (CC BY-SA):
 MirceaKitsune (WTFPL):
   character.x
 
+Jordach (CC BY-SA 3.0):
+  character.png, modified by BlockMen
+
 PilzAdam (WTFPL):
   default_jungleleaves.png
   default_junglesapling.png
