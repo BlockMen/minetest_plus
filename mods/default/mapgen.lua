@@ -482,7 +482,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 		end
 		-- Generate grass
-		local perlin1 = minetest.get_perlin(329, 3, 0.6, 100)
+		local perlin1 = minetest.get_perlin(380, 3, 0.6, 100)
 		-- Assume X and Z lengths are equal
 		local divlen = 16
 		local divs = (maxp.x-minp.x)/divlen+1;
