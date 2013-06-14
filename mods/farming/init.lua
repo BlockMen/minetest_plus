@@ -190,10 +190,9 @@ minetest.register_node(":default:grass_1", {
 		max_items = 1,
 		items = {
 			{items = {'farming:seed_wheat'},rarity = 5},
-			{items = {'default:grass_1'}},
 		}
 	},
-	groups = {snappy=3,flammable=3,flora=1,attached_node=1},
+	groups = {snappy=3,flammable=3,flora=1,attached_node=1,dig_immediate=3},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -222,10 +221,9 @@ for i=2,5 do
 			max_items = 1,
 			items = {
 				{items = {'farming:seed_wheat'},rarity = 5},
-				{items = {'default:grass_1'}},
 			}
 		},
-		groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1},
+		groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1,dig_immediate=3},
 		sounds = default.node_sound_leaves_defaults(),
 		selection_box = {
 			type = "fixed",
@@ -249,10 +247,9 @@ minetest.register_node(":default:junglegrass", {
 		max_items = 1,
 		items = {
 			{items = {'farming:seed_cotton'},rarity = 8},
-			{items = {'default:junglegrass'}},
 		}
 	},
-	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1,dig_immediate=3},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",

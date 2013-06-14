@@ -40,7 +40,7 @@ function default.node_sound_sand_defaults(table)
 	--table.dug = table.dug or
 	--		{name="default_dirt_break", gain=0.25}
 	table.dug = table.dug or
-			{name="", gain=0.25}
+			{name="default_grass_footstep.2", gain=0.25}
 	default.node_sound_defaults(table)
 	return table
 end
