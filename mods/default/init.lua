@@ -3,7 +3,7 @@
 
 -- The API documentation in here was moved into doc/lua_api.txt
 
-WATER_ALPHA = 180
+WATER_ALPHA = 200
 WATER_VISC = 1
 LAVA_VISC = 7
 LIGHT_MAX = 14
