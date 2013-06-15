@@ -1,6 +1,6 @@
 Minetest+  -  a game for the Minetest game engine [based on minetest_game]
 =========
-Version 0.1
+Version 0.2
 
 About this game
 ---------------
@@ -31,10 +31,13 @@ Furthermore this game has fancy 3d torches, based on my torches mod and it inclu
 Other changes:
 - chests drop stuff when digged
 - removed bones mod
+- new character texture
+- grass and flowers get digged immediate
+- more grass is spawned
+- uses new damage sound
+- tweaked textures of grass, water and papyrus
 
 So hope you enjoy this game and like the changes i made to default game.
-
-PS: this game supports mods that override all formspecs, e.g. -> Crafting
 
 
 

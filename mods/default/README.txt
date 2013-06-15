@@ -58,7 +58,7 @@ Cisoun's WTFPL texture pack:
   default_tool_woodshovel.png
   default_tree.png
   default_tree_top.png
-  default_water.png
+  default_water.png, modified by BlockMen
 
 Originating from G4JC's Almost MC Texture Pack:
   default_wood.png
@@ -73,15 +73,15 @@ VanessaE's animated torches (WTFPL):
   default_torch_on_floor.png
 
 RealBadAngel's animated water (WTFPL):
-  default_water_source_animated.png
-  default_water_flowing_animated.png
+  default_water_source_animated.png, modified by BlockMen
+  default_water_flowing_animated.png, modified by BlockMen
 
 VanessaE (WTFPL):
   default_nc_back.png
   default_nc_front.png
   default_nc_rb.png
   default_nc_side.png
-  default_grass_*.png
+  default_grass_*.png, modified by BlockMen
   default_desert_sand.png
   default_desert_stone.png
   default_desert_stone_brick.png
@@ -91,7 +91,7 @@ VanessaE (WTFPL):
 Calinou (CC BY-SA):
   default_brick.png
   default_clay_brick.png
-  default_papyrus.png
+  default_papyrus.png, modified by BlockMen
   default_tool_steelsword.png
   default_bronze_ingot.png
   default_copper_ingot.png
@@ -137,7 +137,6 @@ InfinityProject (WTFPL):
 Splizard (CC BY-SA 3.0):
   default_snow.png
   default_snow_side.png
-  default_ice.png
 
 Zeg9 (CC BY-SA 3.0):
   default_coal_block.png
@@ -148,7 +147,7 @@ Zeg9 (CC BY-SA 3.0):
   default_diamond_block.png
 
 BlockMen (CC-BY 3.0):
-  character.png
+  character.png (based on Jordach's texture)
   default_charcoal.png
   default_hardened_clay.png
   default_cactus_side.png (based on default texture)
@@ -160,6 +159,17 @@ BlockMen (CC-BY 3.0):
   default_lava_particle.png
   default_torch.png
   default_side.png
+  default_water.png (based on default texture)
+  default_water_flowing_animated.png (based on default texture)
+  default_water_source_animated.png (based on default texture)
+  default_papyrus.png (based on Calinou's texture)
+  default_grass.png (based on default texture)
+  default_grass_1.png (based on default texture)
+  default_grass_2.png (based on default texture)
+  default_grass_3.png (based on default texture)
+  default_grass_4.png (based on default texture)
+  default_grass_5.png (based on default texture)
+  default_grass_side.png (based on default texture)
 
 License of sounds
 ---------------------
@@ -170,6 +180,6 @@ Glass breaking sounds (CC BY 3.0):
 
 
 other sounds: (freesound.org)
--default_hurt by thecheeseman, CC-BY 3.0
--default_lava by audionautics, CC-BY 3.0
--default_water by felix.blume, CC0
+- player_damage by thecheeseman, CC-BY 3.0
+- default_lava by audionautics, CC-BY 3.0
+- default_water by felix.blume, CC0

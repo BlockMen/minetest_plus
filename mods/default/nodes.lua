@@ -315,7 +315,7 @@ minetest.register_node("default:cactus", {
 	description = "Cactus",
 	tiles = {"default_cactus_top.png", "default_cactus_top.png", "default_cactus_side.png"},
 	is_ground_content = true,
-	groups = {snappy=1,choppy=3,flammable=2},
+	groups = {snappy=1,choppy=3,flammable=2,oddly_breakable_by_hand=2},
 	sounds = default.node_sound_wood_defaults(),
 	drawtype = "nodebox",
 	paramtype = "light",
