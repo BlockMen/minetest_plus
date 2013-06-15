@@ -360,9 +360,6 @@ minetest.register_abm({
 		for _,object in ipairs(minetest.env:get_objects_inside_radius(pos, 15.1/16)) do--1.3
 			if object:get_hp() > 0 then
 				object:set_hp(object:get_hp()-1)
-				if object:is_player() then
-					if CACTUS_HURT_SOUND then minetest.sound_play("dplus_hurt", {pos = pos, gain = 0.5, max_hear_distance = 10}) end
-				end
 			elseif not object:is_player() and object:get_hp() == 0 and object:get_luaentity().name ~= "__builtin:item" then
 				object:remove()
 			end

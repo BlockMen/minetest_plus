@@ -330,6 +330,13 @@ minetest.register_node("default:cactus", {
 		fixed = {-7/16, -0.5, -7/16, 7/16, 0.5, 7/16},
 				
 	},
+	on_punch = function(pos, node, puncher)
+		if not puncher then return end
+
+		if puncher:get_wielded_item():get_name() == "" then 
+			minetest.sound_play("player_damage", {pos = pos, gain = 0.3, max_hear_distance = 10}) 
+		end
+	end,
 })
 
 minetest.register_node("default:papyrus", {
