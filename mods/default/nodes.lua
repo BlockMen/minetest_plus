@@ -631,10 +631,10 @@ default.chest_formspec =
 	"list[current_player;main;0,5;8,4;]"
 
 function default.get_locked_chest_formspec(pos)
-	local p = pos.x .. "," .. pos.y .. "," ..pos.z
+	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
 	local formspec = 
 		"size[8,9]"..
-		"list[nodemeta:".. p .. ";main;0,0;8,4;]"..
+		"list[nodemeta:".. spos .. ";main;0,0;8,4;]"..
 		"list[current_player;main;0,5;8,4;]"
 	return formspec
 end
