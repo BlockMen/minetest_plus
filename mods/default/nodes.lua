@@ -777,25 +777,27 @@ minetest.register_node("default:chest_locked", {
 	end,
 })
 
-function default.get_furnace_active_formspec(pos, percent)
+function default.get_furnace_active_formspec(pos, percent, item_percent)
 	local formspec = 
-	"size[8,9]"..
-	"image[2,2;1,1;default_furnace_fire_bg.png^[lowpart:"..
+	"size[8,8]"..
+	"image[2,1.5;1,1;default_furnace_fire_bg.png^[lowpart:"..
 	(100-percent)..":default_furnace_fire_fg.png]"..
-	"list[current_name;fuel;2,3;1,1;]"..
-	"list[current_name;src;2,1;1,1;]"..
+	"image[3.5,1.5;1,1;default_furnace_arrow_bg.png^[lowpart:"..
+	(item_percent*100)..":default_furnace_arrow_fg.png^[transformR270]"..
+	"list[current_name;fuel;2,2.5;1,1;]"..
+	"list[current_name;src;2,0.5;1,1;]"..
 	"list[current_name;dst;5,1;2,2;]"..
-	"list[current_player;main;0,5;8,4;]"
+	"list[current_player;main;0,4;8,4;]"
 	return formspec
 end
 
 default.furnace_inactive_formspec =
-	"size[8,9]"..
-	"image[2,2;1,1;default_furnace_fire_bg.png]"..
-	"list[current_name;fuel;2,3;1,1;]"..
-	"list[current_name;src;2,1;1,1;]"..
+	"size[8,8]"..
+	"image[2,1.5;1,1;default_furnace_fire_bg.png]"..
+	"list[current_name;fuel;2,2.5;1,1;]"..
+	"list[current_name;src;2,0.5;1,1;]"..
 	"list[current_name;dst;5,1;2,2;]"..
-	"list[current_player;main;0,5;8,4;]"
+	"list[current_player;main;0,4;8,4;]"
 
 minetest.register_node("default:furnace", {
 	description = "Furnace",
@@ -868,9 +870,9 @@ minetest.register_node("default:furnace", {
 minetest.register_node("default:furnace_active", {
 	description = "Furnace",
 	tiles = {"default_furnace_top.png", "default_furnace_bottom.png", "default_furnace_side.png",
-		"default_furnace_side.png", "default_furnace_side.png", "default_furnace_front_active.png"},
+		"default_furnace_side.png", "default_furnace_side.png", "default_furnace_front.png^default_furnace_front_active.png"},
 	paramtype2 = "facedir",
-	light_source = 8,
+	light_source = 10,
 	drop = "default:furnace",
 	groups = {cracky=2, not_in_creative_inventory=1},
 	legacy_facedir_simple = true,
@@ -977,6 +979,7 @@ minetest.register_abm({
 		end
 		
 		local was_active = false
+		local item_percent = 0
 		
 		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
 			was_active = true
@@ -999,9 +1002,14 @@ minetest.register_abm({
 		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
 			local percent = math.floor(meta:get_float("fuel_time") /
 					meta:get_float("fuel_totaltime") * 100)
+			for i=0, 0.4, 0.1 do
+				local dpos = default.facedir_to_dir(node.param2)
+				default.add_fire({x=pos.x+dpos.x, y=pos.y-0.52, z=pos.z+dpos.z}, 2-percent*0.01)--facedir auslesen
+			end
 			meta:set_string("infotext","Furnace active: "..percent.."%")
 			hacky_swap_node(pos,"default:furnace_active")
-			meta:set_string("formspec",default.get_furnace_active_formspec(pos, percent))
+			item_percent = meta:get_float("src_time")/cooked.time
+			meta:set_string("formspec",default.get_furnace_active_formspec(pos, percent, item_percent))
 			return
 		end
 

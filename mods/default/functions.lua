@@ -365,3 +365,30 @@ minetest.register_abm({
 			end
 		end
 end})
+
+
+local null = {x=0, y=0, z=0}
+--fire_particles
+function default.add_fire(pos, scale)
+	if scale == nil then scale =  1 end
+	pos.y = pos.y+0.19
+	minetest.add_particle(pos, null, null, 1.1,
+   					1.5*scale, true, "default_fire"..tostring(math.random(1,2)) ..".png")
+	pos.y = pos.y +0.01
+	minetest.add_particle(pos, null, null, 0.8,
+   					1.5*scale, true, "default_fire"..tostring(math.random(1,2)) ..".png")
+end
+
+function default.facedir_to_dir(int)
+	if int == 0 then
+		return {x=-0.3+(0.1*math.random(1,6)),y=0,z=-0.5}
+	elseif int == 1 then
+		return {x=-0.5,y=0,z=-0.3+(0.1*math.random(1,6))}
+	elseif int == 2 then
+		return {x=0.3-(0.1*math.random(1,6)),y=0,z=0.5}
+	elseif int == 3 then
+		return {x=0.5,y=0,z=0.3-(0.1*math.random(1,6))}
+	else
+		return nil
+	end
+end

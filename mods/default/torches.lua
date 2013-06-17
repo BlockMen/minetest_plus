@@ -1,13 +1,5 @@
-local null = {x=0, y=0, z=0}
---fire_particles
-local function add_fire(pos)
-	pos.y = pos.y+0.19
-	minetest.add_particle(pos, null, null, 1.1,
-   					1.5, true, "default_fire"..tostring(math.random(1,2)) ..".png")
-	pos.y = pos.y +0.01
-	minetest.add_particle(pos, null, null, 0.8,
-   					1.5, true, "default_fire"..tostring(math.random(1,2)) ..".png")
-end
+--torches = {}
+
 
 function check_attached_node_fdir(p, n)
 	local def = minetest.registered_nodes[n.name]
@@ -37,7 +29,7 @@ minetest.register_abm({
 	interval = 1,
 	chance = 1,
 	action = function(pos)
-		add_fire(pos)
+		default.add_fire(pos)
 		if not check_attached_node_fdir(pos, minetest.env:get_node(pos)) then
 			minetest.env:dig_node(pos)
 			minetest.env:add_item(pos, {name="default:torch"})
@@ -50,7 +42,7 @@ minetest.register_abm({
 	interval = 1,
 	chance = 1,
 	action = function(pos)	
-		add_fire(pos)
+		default.add_fire(pos)
 	pos.y = pos.y-1
 	local nn = minetest.env:get_node(pos).name
 	local def2 = minetest.registered_nodes[nn]
