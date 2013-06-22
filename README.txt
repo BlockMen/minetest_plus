@@ -1,6 +1,6 @@
 Minetest+  -  a game for the Minetest game engine [based on minetest_game]
 =========
-Version 0.2
+Version 0.3
 
 About this game
 ---------------
@@ -8,6 +8,7 @@ Minetest+ tries to be as near as possible at the default game (Minetest_game), b
 
 Namely these tweaks are based on "Default Plus" mod, which changes following:
 
+Version 0.1:
 New items:
 - Charcoal (by putting a tree log in furnace) (1 tree -> 1 charcoal)
 - Hardened Clay (by putting a clay block in furnace) (1 clayblock -> 1 hardened clay)
@@ -27,15 +28,21 @@ Changed Behavior:
 
 Furthermore this game has fancy 3d torches, based on my torches mod and it includes the doors mod aswell the intweak mod.
 
-
 Other changes:
 - chests drop stuff when digged
 - removed bones mod
 - new character texture
+
+Version 0.2:
 - grass and flowers get digged immediate
 - more grass is spawned
 - uses new damage sound
 - tweaked textures of grass, water and papyrus
+
+Version 0.3:
+- reworked furnaces (have flames which size shows left burntime, progress for each item)
+- added mese- and diamondhoe for farming
+- added HUD-mod (with hunger)
 
 So hope you enjoy this game and like the changes i made to default game.
 
