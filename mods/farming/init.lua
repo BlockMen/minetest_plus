@@ -137,6 +137,25 @@ minetest.register_tool("farming:hoe_bronze", {
 	end,
 })
 
+minetest.register_tool("farming:hoe_mese", {
+	description = "Mese Hoe",
+	inventory_image = "farming_tool_mesehoe.png",
+	
+	on_use = function(itemstack, user, pointed_thing)
+		return hoe_on_use(itemstack, user, pointed_thing, 350)
+	end,
+})
+
+minetest.register_tool("farming:hoe_diamond", {
+	description = "Diamond Hoe",
+	inventory_image = "farming_tool_diamondhoe.png",
+	
+	on_use = function(itemstack, user, pointed_thing)
+		return hoe_on_use(itemstack, user, pointed_thing, 500)
+	end,
+})
+
+
 minetest.register_craft({
 	output = "farming:hoe_wood",
 	recipe = {
@@ -172,6 +191,26 @@ minetest.register_craft({
 		{"", "default:stick"},
 	}
 })
+
+minetest.register_craft({
+	output = "farming:hoe_mese",
+	recipe = {
+		{"default:mese_crystal", "default:mese_crystal"},
+		{"", "default:stick"},
+		{"", "default:stick"},
+	}
+})
+
+
+minetest.register_craft({
+	output = "farming:hoe_diamond",
+	recipe = {
+		{"default:diamond", "default:diamond"},
+		{"", "default:stick"},
+		{"", "default:stick"},
+	}
+})
+
 
 --
 -- Override grass for drops
