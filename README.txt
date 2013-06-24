@@ -44,6 +44,10 @@ Version 0.3:
 - added mese- and diamondhoe for farming
 - added HUD-mod (with hunger)
 
+Version dev:
+-enabled jungles
+-added PilzAdam's builtin_item mod
+
 So hope you enjoy this game and like the changes i made to default game.
 
 
