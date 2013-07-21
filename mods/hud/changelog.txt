@@ -1,0 +1,29 @@
+0.2 Beta
+--------
+
+- added support of costum config files
+- you can eat max. 50% more than before (although it isnt shown in hunger bar)
+- you get healed with 8 breads and more (in hunger bar) now
+- a bread (from farming) == 2 breads in hunger bar
+
+0.2.1 Beta
+----------
+- tweaked override of food
+- added support for food of dwares, moretrees and simple mobs
+
+0.2.2 Beta
+----------
+- added support for food of animalmaterials (mobf modpack),fishing
+
+0.2.3 Beta
+----------
+- added support for food of glooptest and bushes (commit by CheeseKeg)
+
+0.3 Beta
+----------
+- added fancy borders of hud inventory bar (only for screenheight <= 1280)
+
+0.4 Beta
+----------
+- enabled drowning
+

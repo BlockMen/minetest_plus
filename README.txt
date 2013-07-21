@@ -1,6 +1,6 @@
 Minetest+  -  a game for the Minetest game engine [based on minetest_game]
 =========
-Version 0.3
+Version 0.4
 
 About this game
 ---------------
@@ -44,9 +44,13 @@ Version 0.3:
 - added mese- and diamondhoe for farming
 - added HUD-mod (with hunger)
 
-Version dev:
--enabled jungles
--added PilzAdam's builtin_item mod
+Version 0.4:
+- enabled jungles
+- added PilzAdam's builtin_item mod
+- tweaked physics
+- updated hud mod (0.4)
+- fixed intweak bug
+- added several commits from minetest_game
 
 So hope you enjoy this game and like the changes i made to default game.
 
