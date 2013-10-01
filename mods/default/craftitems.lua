@@ -90,6 +90,7 @@ minetest.register_craftitem("default:clay_brick", {
 minetest.register_craftitem("default:scorched_stuff", {
 	description = "Scorched Stuff",
 	inventory_image = "default_scorched_stuff.png",
+	groups = {not_in_creative = 1},
 })
 
 minetest.register_craftitem("default:obsidian_shard", {

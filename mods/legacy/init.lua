@@ -78,12 +78,13 @@ minetest.register_alias("scorched_stuff", "default:scorched_stuff")
 minetest.register_craftitem(":rat", {
 	description = "Rat",
 	inventory_image = "rat.png",
+	groups = {not_in_creative_inventory=1},
 })
 
 minetest.register_craftitem(":cooked_rat", {
 	description = "Cooked rat",
 	inventory_image = "cooked_rat.png",
-	on_use = minetest.item_eat(6),
+	groups = {not_in_creative_inventory=1},
 })
 
 minetest.register_craftitem(":firefly", {

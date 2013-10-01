@@ -25,23 +25,22 @@ function check_attached_node_fdir(p, n)
 end
 
 minetest.register_abm({
-	nodenames = {"default:wand"},
+	nodenames = {"default:torch_wand"},
 	interval = 1,
 	chance = 1,
 	action = function(pos)
 		default.add_fire(pos)
 		if not check_attached_node_fdir(pos, minetest.env:get_node(pos)) then
 			minetest.env:dig_node(pos)
-			minetest.env:add_item(pos, {name="default:torch"})
 		end
 	end
 })
 
 minetest.register_abm({
-	nodenames = {"default:floor"},
+	nodenames = {"default:torch_floor"},
 	interval = 1,
 	chance = 1,
-	action = function(pos)	
+	action = function(pos)
 		default.add_fire(pos)
 	pos.y = pos.y-1
 	local nn = minetest.env:get_node(pos).name
@@ -49,7 +48,6 @@ minetest.register_abm({
 	if def2 and not def2.walkable then
 		pos.y = pos.y+1
 		minetest.env:dig_node(pos)
-		minetest.env:add_item(pos, {name="default:torch"})
 	end
 	end
 })
@@ -71,7 +69,7 @@ local function is_wall(wallparam)
 end
 
 --node_boxes
-minetest.register_craftitem("default:torch", {
+minetest.register_craftitem(":default:torch", {
 	description = "Torch",
 	inventory_image = "default_torch.png",
 	wield_image = "default_torch.png",
@@ -84,21 +82,25 @@ minetest.register_craftitem("default:torch", {
 		local above = pointed_thing.above
 		local under = pointed_thing.under
 		local wdir = minetest.dir_to_wallmounted({x = under.x - above.x, y = under.y - above.y, z = under.z - above.z})
+		local u_n = minetest.get_node(under)
+		if u_n and not minetest.registered_nodes[u_n.name].walkable then above = under end
+		local u_n = minetest.get_node(above)
+		if u_n and minetest.registered_nodes[u_n.name].walkable then return itemstack end
 		if wdir == 1 then
-			minetest.env:add_node(above, {name = "default:floor"})		
+			minetest.env:add_node(above, {name = "default:torch_floor"})		
 		else
-			minetest.env:add_node(above, {name = "default:wand", param2 = is_wall(wdir)})
+			minetest.env:add_node(above, {name = "default:torch_wand", param2 = is_wall(wdir)})
 		end
 		if not wdir == 0 or not minetest.setting_getbool("creative_mode") then
 			itemstack:take_item()
 		end
 		return itemstack
-		
+
 	end
 
 })
 
-minetest.register_node("default:floor", {
+minetest.register_node("default:torch_floor", {
 	--description = "Fakel",
 	inventory_image = "default_torch.png",
 	wield_image = "default_torch.png",
@@ -121,7 +123,10 @@ minetest.register_node("default:floor", {
 	selection_box = {
 		type = "fixed",
 		fixed = {-1/16, -0.5, -1/16, 1/16, 2/16, 1/16},
-	}
+	},
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		if not digger:is_player() then minetest.add_item(pos, {name="default:torch"}) end
+	end,
 })
 
 local wall_ndbx = {
@@ -135,14 +140,14 @@ local wall_ndbx = {
 			{-1/16, 0, -1/16, 1/16, 2/16, 1/16},
 }
 
-minetest.register_node("default:wand", {
+minetest.register_node("default:torch_wand", {
 	--description = "Fakel",
 	inventory_image = "default_torch.png",
 	wield_image = "default_torch.png",
 	wield_scale = {x=1,y=1,z=1+1/16},
 	drawtype = "nodebox",
-	tiles = {"default_torch.png^[transformfy", "default_wood.png", "default_side.png",
-		"default_side.png^[transformfx", "default_wood.png", "default_torch.png"},
+	tiles = {"default_torch.png^[transformfy", "default_wood.png", "default_torch_side.png",
+		"default_torch_side.png^[transformfx", "default_wood.png", "default_torch.png"},
 
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -158,8 +163,13 @@ minetest.register_node("default:wand", {
 	},
 	selection_box = {
 		type = "fixed",
-		fixed =	wall_ndbx
+		fixed =	{-1/16, -6/16, 7/16, 1/16, 2/16, 2/16},
 	},
-
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		if not digger:is_player() then minetest.add_item(pos, {name="default:torch"}) end
+	end,
 
 })
+
+minetest.register_alias("default:wand",  "default:torch_wand")
+minetest.register_alias("default:floor",  "default:torch_floor")

@@ -1,6 +1,6 @@
 Minetest+  -  a game for the Minetest game engine [based on minetest_game]
 =========
-Version 0.4
+Version 0.5
 
 About this game
 ---------------
@@ -51,6 +51,14 @@ Version 0.4:
 - updated hud mod (0.4)
 - fixed intweak bug
 - added several commits from minetest_game
+
+Version 0.5:
+- updated several mods
+- disabled hunger by default
+- removed semi-transparent glass
+- tweaked textures of grass, torch, leaves
+- removed rat, cooked rat and sorched stuff from inventory
+- drowning damages player more (is drowning faster)
 
 So hope you enjoy this game and like the changes i made to default game.
 
