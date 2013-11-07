@@ -62,7 +62,7 @@ function fire.update_sounds_around(pos)
 	if not sound then
 		if should_have_sound then
 			fire.sounds[p0_hash] = {
-				handle = minetest.sound_play(wanted_sound, {pos=cp, loop=true}),
+				handle = minetest.sound_play(wanted_sound, {pos=cp, max_hear_distance = 20, loop=true}),
 				name = wanted_sound.name,
 			}
 		end
@@ -73,7 +73,7 @@ function fire.update_sounds_around(pos)
 		elseif sound.name ~= wanted_sound.name then
 			minetest.sound_stop(sound.handle)
 			fire.sounds[p0_hash] = {
-				handle = minetest.sound_play(wanted_sound, {pos=cp, loop=true}),
+				handle = minetest.sound_play(wanted_sound, {pos=cp, max_hear_distance = 30, loop=true}),
 				name = wanted_sound.name,
 			}
 		end
@@ -107,7 +107,7 @@ end
 minetest.register_abm({
 	nodenames = {"group:flammable"},
 	neighbors = {"group:igniter"},
-	interval = 1,
+	interval = 2,
 	chance = 2,
 	action = function(p0, node, _, _)
 		-- If there is water or stuff like that around flame, don't ignite
@@ -126,8 +126,8 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"group:igniter"},
 	neighbors = {"air"},
-	interval = 2,
-	chance = 10,
+	interval = 8,
+	chance = 8,
 	action = function(p0, node, _, _)
 		local reg = minetest.registered_nodes[node.name]
 		if not reg or not reg.groups.igniter or reg.groups.igniter < 2 then

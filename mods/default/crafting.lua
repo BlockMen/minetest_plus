@@ -607,12 +607,6 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "cooking",
-	output = "default:hardened_clay",
-	recipe = "default:clay",
-})
-
-minetest.register_craft({
-	type = "cooking",
 	output = "default:clay_brick",
 	recipe = "default:clay_lump",
 })

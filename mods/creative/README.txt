@@ -1,5 +1,8 @@
 Minetest 0.4 mod: creative
 ==========================
+Version 1.0
+This mod is based on the original creative mod by celeron55
+------------------------
 
 Implements creative mode.
 
@@ -10,9 +13,10 @@ Registered items that
 - do not have the group not_in_creative_inventory
 are added to the creative inventory.
 
-License of source code and media files:
----------------------------------------
-Copyright (C) 2012 Perttu Ahola (celeron55) <celeron55@gmail.com>
+License (WTFPL):
+----------------
+Copyright (C) 2013 by BlockMen
+
 
 This program is free software. It comes without any warranty, to
 the extent permitted by applicable law. You can redistribute it

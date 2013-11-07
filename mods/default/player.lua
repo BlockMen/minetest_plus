@@ -67,8 +67,28 @@ function player_update_visuals(pl)
 	pl:set_properties(prop)
 end
 
--- Update appearance when the player joins
-minetest.register_on_joinplayer(player_update_visuals)
+function default.set_player_inventory(player)
+        player:set_inventory_formspec(
+		"size[8,8.5]"..
+		"bgcolor[#000A;true]"..
+		"background[-0.19,-0.25;8.41,9.25;default_formspec_bg.png^default_formspec_player.png]"..
+		"list[current_player;main;0,4.25;8,1;]"..
+                "list[current_player;main;0,5.5;8,3;8]"..
+		"list[current_player;craft;1.75,0.5;3,3;]"..
+		"list[current_player;craftpreview;5.75,1.5;1,1;]"..
+		"listcolors[#AAA0;#FFF5]"
+        )
+end
+
+-- Update appearance and formspec when the player joins
+minetest.register_on_joinplayer(function(player)
+        player_update_visuals(player)
+	if minetest.setting_getbool("creative_mode") then
+		creative.set_creative_formspec(player, 0, 1)
+	else
+		default.set_player_inventory(player)
+	end
+end)
 
 -- Check each player and apply animations
 function player_step(dtime)

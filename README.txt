@@ -1,6 +1,6 @@
 Minetest+  -  a game for the Minetest game engine [based on minetest_game]
 =========
-Version 0.5
+Version 0.6
 
 About this game
 ---------------
@@ -59,6 +59,18 @@ Version 0.5:
 - tweaked textures of grass, torch, leaves
 - removed rat, cooked rat and sorched stuff from inventory
 - drowning damages player more (is drowning faster)
+
+Version 0.6:
+- Rework of inventorys, add new creative inventory
+- Slow down fire a bit
+- Tweak digging times of some tools
+- Improved textures for jungletree, -wood, torch(inventory)
+- Dropped items also rotate and 3D
+- Tweaked menu image a bit
+- Add abms for trees, grass, etc
+- Update stairs mod
+- Remove hardened clay
+- and a few more smaller tweaks
 
 So hope you enjoy this game and like the changes i made to default game.
 

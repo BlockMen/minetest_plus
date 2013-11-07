@@ -4,7 +4,7 @@ minetest.register_node("default:stone", {
 	description = "Stone",
 	tiles = {"default_stone.png"},
 	is_ground_content = true,
-	groups = {cracky=3, stone=1},
+	groups = {cracky=3, stone=1,oddly_breakable_by_hand=4},
 	drop = 'default:cobble',
 	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
@@ -178,16 +178,6 @@ minetest.register_node("default:clay", {
 	is_ground_content = true,
 	groups = {crumbly=3},
 	drop = 'default:clay_lump 4',
-	sounds = default.node_sound_dirt_defaults({
-		footstep = "",
-	}),
-})
-
-minetest.register_node("default:hardened_clay", {
-	description = "Hardened Clay",
-	tiles = {"default_hardened_clay.png"},
-	is_ground_content = true,
-	groups = {crumbly=2},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = "",
 	}),
@@ -635,15 +625,23 @@ minetest.register_node("default:sign_wall", {
 
 default.chest_formspec = 
 	"size[8,9]"..
-	"list[current_name;main;0,0;8,4;]"..
-	"list[current_player;main;0,5;8,4;]"
+	"bgcolor[#000A;true]"..
+	"background[-0.19,-0.25;8.41,9.8;default_formspec_chest.png]"..
+	"list[current_name;main;0,0.43;8,4;]"..
+	"list[current_player;main;0,4.85;8,1;]"..
+	"list[current_player;main;0,6.08;8,3;8]"..
+	"listcolors[#AAA0;#FFF5]"
 
 function default.get_locked_chest_formspec(pos)
 	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
 	local formspec = 
 		"size[8,9]"..
-		"list[nodemeta:".. spos .. ";main;0,0;8,4;]"..
-		"list[current_player;main;0,5;8,4;]"
+		"bgcolor[#000A;true]"..
+		"background[-0.19,-0.25;8.41,9.8;default_formspec_chest.png]"..
+		"list[nodemeta:".. spos .. ";main;0,0.43;8,4;]"..
+		"list[current_player;main;0,4.85;8,1;]"..
+		"list[current_player;main;0,6.08;8,3;8]"..
+		"listcolors[#AAA0;#FFF5]"
 	return formspec
 end
 
@@ -780,25 +778,34 @@ minetest.register_node("default:chest_locked", {
 
 function default.get_furnace_active_formspec(pos, percent, item_percent)
 	local formspec = 
-	"size[8,8]"..
-	"image[2,1.5;1,1;default_furnace_fire_bg.png^[lowpart:"..
+	"size[8,8.5]"..
+	"bgcolor[#000A;true]"..
+	"background[-0.19,-0.25;8.41,9.25;default_formspec_bg.png^default_formspec_furnace.png]"..
+	"image[2.75,1.5;1,1;default_furnace_fire_bg.png^[lowpart:"..
 	(100-percent)..":default_furnace_fire_fg.png]"..
-	"image[3.5,1.5;1,1;default_furnace_arrow_bg.png^[lowpart:"..
+	"image[3.75,1.5;1,1;default_furnace_arrow_bg.png^[lowpart:"..
 	(item_percent*100)..":default_furnace_arrow_fg.png^[transformR270]"..
-	"list[current_name;fuel;2,2.5;1,1;]"..
-	"list[current_name;src;2,0.5;1,1;]"..
-	"list[current_name;dst;5,1;2,2;]"..
-	"list[current_player;main;0,4;8,4;]"
+	"list[current_name;src;2.75,0.5;1,1;]"..
+	"list[current_name;fuel;2.75,2.5;1,1;]"..
+	"list[current_name;dst;4.75,0.96;2,2;]"..
+	"list[current_player;main;0,4.25;8,1;]"..
+	"list[current_player;main;0,5.5;8,3;8]"..
+	"listcolors[#AAA0;#FFF5]"
 	return formspec
 end
 
 default.furnace_inactive_formspec =
-	"size[8,8]"..
-	"image[2,1.5;1,1;default_furnace_fire_bg.png]"..
-	"list[current_name;fuel;2,2.5;1,1;]"..
-	"list[current_name;src;2,0.5;1,1;]"..
-	"list[current_name;dst;5,1;2,2;]"..
-	"list[current_player;main;0,4;8,4;]"
+	"size[8,8.5]"..
+	"bgcolor[#000A;true]"..
+	"background[-0.19,-0.25;8.41,9.25;default_formspec_bg.png^default_formspec_furnace.png]"..
+	"image[2.75,1.5;1,1;default_furnace_fire_bg.png]"..
+	"image[3.75,1.5;1,1;default_furnace_arrow_bg.png^[transformR270]"..
+	"list[current_name;src;2.75,0.5;1,1;]"..
+	"list[current_name;fuel;2.75,2.5;1,1;]"..
+	"list[current_name;dst;4.75,0.96;2,2;]"..
+	"list[current_player;main;0,4.25;8,1;]"..
+	"list[current_player;main;0,5.5;8,3;8]"..
+	"listcolors[#AAA0;#FFF5]"
 
 minetest.register_node("default:furnace", {
 	description = "Furnace",
@@ -1178,7 +1185,7 @@ minetest.register_node("default:sapling", {
 minetest.register_node("default:apple", {
 	description = "Apple",
 	drawtype = "plantlike",
-	visual_scale = 1.0,
+	visual_scale = 0.8,
 	tiles = {"default_apple.png"},
 	inventory_image = "default_apple.png",
 	paramtype = "light",
@@ -1186,7 +1193,7 @@ minetest.register_node("default:apple", {
 	walkable = false,
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2}
+		fixed = {-0.2, -0.5, -0.2, 0.2, -0.1, 0.2}
 	},
 	groups = {fleshy=3,dig_immediate=3,flammable=2,leafdecay=3,leafdecay_drop=1},
 	on_use = minetest.item_eat(1),

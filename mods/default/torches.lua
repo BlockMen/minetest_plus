@@ -71,7 +71,7 @@ end
 --node_boxes
 minetest.register_craftitem(":default:torch", {
 	description = "Torch",
-	inventory_image = "default_torch.png",
+	inventory_image = "default_torch_inv.png",
 	wield_image = "default_torch.png",
 	wield_scale = {x=1,y=1,z=1+1/16},
 	liquids_pointable = false,
@@ -102,7 +102,7 @@ minetest.register_craftitem(":default:torch", {
 
 minetest.register_node("default:torch_floor", {
 	--description = "Fakel",
-	inventory_image = "default_torch.png",
+	inventory_image = "default_torch_inv.png",
 	wield_image = "default_torch.png",
 	wield_scale = {x=1,y=1,z=1+2/16},
 	drawtype = "nodebox",
@@ -142,7 +142,7 @@ local wall_ndbx = {
 
 minetest.register_node("default:torch_wand", {
 	--description = "Fakel",
-	inventory_image = "default_torch.png",
+	inventory_image = "default_torch_inv.png",
 	wield_image = "default_torch.png",
 	wield_scale = {x=1,y=1,z=1+1/16},
 	drawtype = "nodebox",
