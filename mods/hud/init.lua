@@ -6,6 +6,7 @@ local hunger_hud = {}
 local air_hud = {}
 hud.armor = {}
 local armor_hud = {}
+local armor_hud_bg = {}
 
 local SAVE_INTERVAL = 0.5*60--currently useless
 
@@ -105,7 +106,7 @@ local function costum_hud(player)
 
  --armor
  if HUD_SHOW_ARMOR then
-       player:hud_add({
+       armor_hud_bg[player:get_player_name()] = player:hud_add({
 		hud_elem_type = "statbar",
 		position = HUD_ARMOR_POS,
 		scale = {x=1, y=1},
@@ -139,20 +140,27 @@ if HUD_SHOW_ARMOR then dofile(minetest.get_modpath("hud").."/armor.lua") end
 
 
 local function update_hud(player)
+	local name = player:get_player_name()
  --air
 	local air = player:get_breath()*2
 	if player:get_breath() > 10 then air = 0 end
-	player:hud_change(air_hud[player:get_player_name()], "number", air)
+	player:hud_change(air_hud[name], "number", air)
  --health
-	player:hud_change(health_hud[player:get_player_name()], "number", player:get_hp())
+	player:hud_change(health_hud[name], "number", player:get_hp())
  --armor
-	local arm = tonumber(hud.armor[player:get_player_name()])
+	local arm = tonumber(hud.armor[name])
 	if not arm then arm = 0 end
-	player:hud_change(armor_hud[player:get_player_name()], "number", arm)
+	player:hud_change(armor_hud[name], "number", arm)
+
+	if (not armor.def[name].count or armor.def[name].count == 0) and hud.armor[name] == 0 then
+		player:hud_change(armor_hud_bg[name], "number", 0)
+	else
+		player:hud_change(armor_hud_bg[name], "number", 20)
+	end
  --hunger
-	local h = tonumber(hud.hunger[player:get_player_name()])
+	local h = tonumber(hud.hunger[name])
 	if h>20 then h=20 end
-	player:hud_change(hunger_hud[player:get_player_name()], "number", h)
+	player:hud_change(hunger_hud[name], "number", h)
 end
 
 local function timer(interval, player)
