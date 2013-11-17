@@ -1,6 +1,6 @@
 Minetest+  -  a game for the Minetest game engine [based on minetest_game]
 =========
-Version 0.6
+Version 0.7
 
 About this game
 ---------------
@@ -71,6 +71,10 @@ Version 0.6:
 - Update stairs mod
 - Remove hardened clay
 - and a few more smaller tweaks
+
+Version 0.7:
+- Add stu's armor mod
+- Add parts of webdesigner97's fire_plus mod (breaking glass, punching hurts player)
 
 So hope you enjoy this game and like the changes i made to default game.
 
