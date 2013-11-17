@@ -22,6 +22,16 @@ minetest.register_node("fire:basic_flame", {
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		fire.on_flame_remove_at(pos)
 	end,
+	on_punch = function(pos, node, puncher)
+		if puncher:is_player() then
+			puncher:set_hp(puncher:get_hp() - 1)
+		end
+	end,
+	on_rightclick = function(pos, node, clicker, itemstack)
+		if clicker:is_player() then
+			clicker:set_hp(clicker:get_hp() - 1)
+		end
+	end
 })
 
 fire = {}
@@ -190,3 +200,22 @@ minetest.register_abm({
 	end,
 })
 
+--destroy glass near fire (sometimes) code by webdesigner97
+minetest.register_abm({
+	nodenames = {"fire:basic_flame"},
+	neighbors = {"default:glass","default:obsidian_glass"},
+	interval = 3,
+	chance = 3,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		local glass = minetest.find_node_near(pos,1,{"default:glass","default:obsidian_glass"})
+		local oldnode = minetest.get_node(glass)
+		if glass then
+			-- Play glass breaking sound
+			minetest.sound_play("default_break_glass", {
+				pos = glass
+			})
+			-- Remove glass node
+			minetest.remove_node(glass)
+		end
+	end,
+})
