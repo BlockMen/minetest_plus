@@ -188,7 +188,8 @@ minetest.register_on_joinplayer(function(player)
 			armor:set_player_armor(player)
 		end,
 		allow_put = function(inv, listname, index, stack, player)
-			if inv:is_empty(listname) then
+			local field = minetest.registered_items[stack:get_name()]
+			if (field and field.groups[listname] and field.groups[listname] ~= 0) and inv:is_empty(listname) then
 				return 1
 			end
 			return 0
