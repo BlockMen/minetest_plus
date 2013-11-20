@@ -187,6 +187,8 @@ function doors:register_door(name, def)
 		end,
 		
 		can_dig = check_player_priv,
+		sounds = def.sounds,
+        	sunlight_propagates = def.sunlight
 	})
 	
 	minetest.register_node(name.."_t_1", {
@@ -217,6 +219,8 @@ function doors:register_door(name, def)
 		end,
 		
 		can_dig = check_player_priv,
+		sounds = def.sounds,
+        	sunlight_propagates = def.sunlight,
 	})
 	
 	minetest.register_node(name.."_b_2", {
@@ -247,6 +251,8 @@ function doors:register_door(name, def)
 		end,
 		
 		can_dig = check_player_priv,
+		sounds = def.sounds,
+        	sunlight_propagates = def.sunlight
 	})
 	
 	minetest.register_node(name.."_t_2", {
@@ -277,6 +283,8 @@ function doors:register_door(name, def)
 		end,
 		
 		can_dig = check_player_priv,
+		sounds = def.sounds,
+        	sunlight_propagates = def.sunlight
 	})
 	
 end
@@ -287,6 +295,8 @@ doors:register_door("doors:door_wood", {
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
 	tiles_bottom = {"door_wood_b.png", "door_brown.png"},
 	tiles_top = {"door_wood_a.png", "door_brown.png"},
+	sounds = default.node_sound_wood_defaults(),
+	sunlight = false,
 })
 
 minetest.register_craft({
@@ -305,6 +315,8 @@ doors:register_door("doors:door_steel", {
 	tiles_bottom = {"door_steel_b.png", "door_grey.png"},
 	tiles_top = {"door_steel_a.png", "door_grey.png"},
 	only_placer_can_open = true,
+	sounds = default.node_sound_wood_defaults(),
+	sunlight = false,
 })
 
 minetest.register_craft({
@@ -319,9 +331,11 @@ minetest.register_craft({
 doors:register_door("doors:door_glass", {
 	description = "Glass Door",
 	inventory_image = "door_glass.png",
-	groups = {snappy=1,cracky=1,oddly_breakable_by_hand=2,door=1},
-	tiles_bottom = {"default_glass.png", "door_grey.png"},
-	tiles_top = {"default_glass.png", "door_grey.png"},
+	groups = {snappy=1,cracky=1,oddly_breakable_by_hand=3,door=1},
+	tiles_bottom = {"door_glass_b.png", "door_glass_side.png"},
+	tiles_top = {"door_glass_a.png", "door_glass_side.png"},
+	sounds = default.node_sound_glass_defaults(),
+	sunlight = true,
 })
 
 minetest.register_craft({
@@ -333,6 +347,24 @@ minetest.register_craft({
 	}
 })
 
+doors:register_door("doors:door_obsidian_glass", {
+	description = "Obsidian Glass Door",
+	inventory_image = "door_obsidian_glass.png",
+	groups = {snappy=1,cracky=1,oddly_breakable_by_hand=3,door=1},
+	tiles_bottom = {"door_obsidian_glass_b.png", "door_obsidian_glass_side.png"},
+	tiles_top = {"door_obsidian_glass_b.png", "door_obsidian_glass_side.png"},
+	sounds = default.node_sound_glass_defaults(),
+	sunlight = true,
+})
+
+minetest.register_craft({
+	output = "doors:door_obsidian_glass",
+	recipe = {
+		{"default:obsidian_glass", "default:obsidian_glass"},
+		{"default:obsidian_glass", "default:obsidian_glass"},
+		{"default:obsidian_glass", "default:obsidian_glass"}
+	}
+})
 minetest.register_alias("doors:door_wood_a_c", "doors:door_wood_t_1")
 minetest.register_alias("doors:door_wood_a_o", "doors:door_wood_t_1")
 minetest.register_alias("doors:door_wood_b_c", "doors:door_wood_b_1")
@@ -374,7 +406,7 @@ minetest.register_node("doors:trapdoor", {
 	description = "Trapdoor",
 	inventory_image = "door_trapdoor.png",
 	drawtype = "nodebox",
-	tiles = {"door_trapdoor.png", "door_trapdoor.png",  "default_wood.png",  "default_wood.png", "default_wood.png", "default_wood.png"},
+	tiles = {"door_trapdoor.png", "door_trapdoor.png",  "door_trapdoor_side.png",  "door_trapdoor_side.png", "door_trapdoor_side.png", "door_trapdoor_side.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
@@ -399,7 +431,7 @@ minetest.register_node("doors:trapdoor", {
 
 minetest.register_node("doors:trapdoor_open", {
 	drawtype = "nodebox",
-	tiles = {"default_wood.png", "default_wood.png",  "default_wood.png",  "default_wood.png", "door_trapdoor.png", "door_trapdoor.png"},
+	tiles = {"door_trapdoor_side.png", "door_trapdoor_side.png",  "door_trapdoor_side.png",  "door_trapdoor_side.png", "door_trapdoor.png", "door_trapdoor.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	pointable = true,

@@ -1,11 +1,11 @@
 Minetest 0.4 mod: doors
 =======================
-version: 1.2.4
+version: 1.3
 
 License of source code:
 -----------------------
 Copyright (C) 2012 PilzAdam
-modified by BlockMen (added sounds, glassdoor, trapdoor)
+modified by BlockMen (added sounds, glassdoors[glass, obsidian glass], trapdoor)
 
 This program is free software. It comes without any warranty, to
 the extent permitted by applicable law. You can redistribute it
@@ -24,7 +24,14 @@ following Textures created by Fernando Zapata (CC BY-SA 3.0):
 
 following Textures created by BlockMen (WTFPL):
   door_glass.png
+  door_obsidian_glass.png
   door_trapdoor.png
+  door_obsidian_glass_side.png
+
+following textures created by celeron55 (CC BY-SA 3.0):
+  door_trapdoor_side.png
+  door_glass_a.png
+  door_glass_b.png
 
 All other textures (created by PilzAdam): WTFPL
 
