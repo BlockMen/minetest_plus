@@ -54,6 +54,7 @@ minetest.register_node("default:stone_with_mese", {
 	groups = {cracky=1},
 	drop = "default:mese_crystal",
 	sounds = default.node_sound_stone_defaults(),
+	light_source = 4,
 })
 
 minetest.register_node("default:stone_with_gold", {
@@ -259,7 +260,7 @@ minetest.register_alias("junglesapling", "default:junglesapling")
 minetest.register_node("default:junglegrass", {
 	description = "Jungle Grass",
 	drawtype = "plantlike",
-	visual_scale = 1.3,
+	visual_scale = 1.2,
 	tiles = {"default_junglegrass.png"},
 	inventory_image = "default_junglegrass.png",
 	wield_image = "default_junglegrass.png",
@@ -439,12 +440,12 @@ minetest.register_node("default:water_flowing", {
 		{
 			image="default_water_flowing_animated.png",
 			backface_culling=false,
-			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=0.8}
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=0.6}
 		},
 		{
 			image="default_water_flowing_animated.png",
 			backface_culling=true,
-			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=0.8}
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=0.6}
 		},
 	},
 	alpha = WATER_ALPHA,
@@ -503,12 +504,12 @@ minetest.register_node("default:lava_flowing", {
 		{
 			image="default_lava_flowing_animated.png",
 			backface_culling=false,
-			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.3}
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.8}
 		},
 		{
 			image="default_lava_flowing_animated.png",
 			backface_culling=true,
-			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.3}
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.8}
 		},
 	},
 	paramtype = "light",
@@ -523,6 +524,7 @@ minetest.register_node("default:lava_flowing", {
 	liquid_alternative_source = "default:lava_source",
 	liquid_viscosity = LAVA_VISC,
 	liquid_renewable = false,
+	liquid_range = 5,
 	damage_per_second = 4*2,
 	post_effect_color = {a=192, r=255, g=64, b=0},
 	groups = {lava=3, liquid=2, hot=3, igniter=1, not_in_creative_inventory=1},
@@ -1111,6 +1113,7 @@ minetest.register_node("default:mese", {
 	is_ground_content = true,
 	groups = {cracky=1,level=2},
 	sounds = default.node_sound_stone_defaults(),
+	light_source = 8,
 })
 minetest.register_alias("default:mese_block", "default:mese")
 
