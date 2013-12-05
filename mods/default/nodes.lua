@@ -1156,7 +1156,7 @@ minetest.register_node("default:nyancat", {
 	tiles = {"default_nc_side.png", "default_nc_side.png", "default_nc_side.png",
 		"default_nc_side.png", "default_nc_back.png", "default_nc_front.png"},
 	paramtype2 = "facedir",
-	groups = {cracky=2},
+	groups = {cracky=2,not_in_creative_inventory=1},
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_defaults(),
 })
@@ -1164,7 +1164,7 @@ minetest.register_node("default:nyancat", {
 minetest.register_node("default:nyancat_rainbow", {
 	description = "Nyan Cat Rainbow",
 	tiles = {"default_nc_rb.png"},
-	groups = {cracky=2},
+	groups = {cracky=2,not_in_creative_inventory=1},
 	sounds = default.node_sound_defaults(),
 })
 
