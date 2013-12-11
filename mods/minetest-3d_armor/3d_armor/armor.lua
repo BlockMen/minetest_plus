@@ -137,7 +137,7 @@ end
 
 -- Register Player Model
 
-default.player_register_model("3d_armor_character.x", {
+default.player_register_model("character.x", {
 	animation_speed = 30,
 	textures = {
 		armor.default_skin,
@@ -174,7 +174,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 minetest.register_on_joinplayer(function(player)
-	default.player_set_model(player, "3d_armor_character.x")
+	default.player_set_model(player, "character.x")
 	--inventory_plus.register_button(player,"armor", "Armor")
 	local player_inv = player:get_inventory()
 	local name = player:get_player_name()
