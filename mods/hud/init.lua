@@ -32,7 +32,10 @@ if set then
 	set:close()
 else
 	if not HUD_ENABLE_HUNGER then
-		HUD_AIR_OFFSET = {x=15,y=0}
+		HUD_AIR_OFFSET = HUD_ARMOR_OFFSET
+		HUD_AIR_POS = HUD_ARMOR_POS
+		HUD_ARMOR_OFFSET = HUD_HUNGER_OFFSET
+		HUD_ARMOR_POS = HUD_HUNGER_POS
 	end
 end
 
@@ -111,7 +114,7 @@ local function costum_hud(player)
 		position = HUD_ARMOR_POS,
 		scale = {x=1, y=1},
 		text = "hud_armor_bg.png",
-		number = 20,
+		number = 0,
 		alignment = {x=-1,y=-1},
 		offset = HUD_ARMOR_OFFSET,
 	})
