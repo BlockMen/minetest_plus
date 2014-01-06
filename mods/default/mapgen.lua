@@ -342,7 +342,54 @@ end
 function default.make_nyancat(pos, facedir, length)
 end
 
+local dirt_snow = minetest.get_content_id("default:dirt_with_snow")
+local dirt_grass = minetest.get_content_id("default:dirt_with_grass")
+local leaves = minetest.get_content_id("default:leaves")
+local snow = minetest.get_content_id("default:snow")
+local air = minetest.get_content_id("air")
+local j1= minetest.get_content_id("default:jungletree")
+local j2 = minetest.get_content_id("default:jungleleaves")
+
+local SNOW_START = 24
+
+local function make_snow(min,max,data,va,rnd)
+	local cnt = max.x-min.x
+	for yi=0, cnt do
+	 if max.y-yi>=SNOW_START+rnd then
+	  for xi=0, cnt do
+	   for zi=0, cnt do
+		local p = {x=min.x+xi,y=max.y-yi,z=min.z+zi}
+		local pi = va:indexp(p)
+		if data[pi] == dirt_grass then
+			data[pi] = dirt_snow
+		end
+		if data[pi] == leaves and p.y > SNOW_START+3+rnd then
+			p.y = p.y+1
+			local opi = va:indexp(p)
+			if data[opi] == air then
+				data[pi] = snow
+			end
+		end
+	   end
+	  end
+	 end
+	end
+	return data
+end
+
 minetest.register_on_generated(function(minp, maxp, seed)
+	local pr = PseudoRandom(seed+1)
+	local snow_height_rnd = pr:next(0,3)
+	if maxp.y >= SNOW_START+snow_height_rnd  then
+		local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
+		local data = vm:get_data()
+		local va = VoxelArea:new{ MinEdge = emin, MaxEdge = emax }
+		data = make_snow(minp,maxp,data, va,snow_height_rnd)
+		vm:set_data(data)
+		vm:calc_lighting(emin,emax)
+		vm:write_to_map(data)
+	end
+
 	if maxp.y >= 2 and minp.y <= 0 then
 		-- Generate clay
 		-- Assume X and Z lengths are equal

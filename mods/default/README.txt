@@ -169,6 +169,8 @@ Glass breaking sounds (CC BY 3.0):
   2: http://www.freesound.org/people/Tomlija/sounds/97669/
   3: http://www.freesound.org/people/lsprice/sounds/88808/
 
+Mito551 (sounds) (CC BY-SA):
+ default_snow_footstep.{1,2,3}.ogg
 
 other sounds: (freesound.org)
 - player_damage by thecheeseman, CC-BY 3.0

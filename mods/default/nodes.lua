@@ -116,10 +116,14 @@ minetest.register_node("default:dirt_with_snow", {
 	tiles = {"default_snow.png", "default_dirt.png", "default_dirt.png^default_snow_side.png"},
 	is_ground_content = true,
 	groups = {crumbly=3},
-	drop = 'default:dirt',
-	sounds = default.node_sound_dirt_defaults({
-		footstep = {name="default_grass_footstep", gain=0.4},
-	}),
+	--drop = 'default:dirt',
+	drop = {
+		items = {
+			{items = {'default:snow'},rarity = 1.2},
+			{items = {'default:dirt'}}
+		}
+	},
+	sounds = default.node_sound_snow_defaults(),
 })
 minetest.register_alias("dirt_with_snow", "default:dirt_with_snow")
 
@@ -1155,9 +1159,7 @@ minetest.register_node("default:snow", {
 		},
 	},
 	groups = {crumbly=3,falling_node=1},
-	sounds = default.node_sound_dirt_defaults({
-		footstep = {name="default_grass_footstep", gain=0.4},
-	}),
+	sounds = default.node_sound_snow_defaults(),
 	on_construct = function(pos)
 		pos.y = pos.y - 1
 		if minetest.get_node(pos).name == "default:dirt_with_grass" then
