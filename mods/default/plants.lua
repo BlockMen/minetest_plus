@@ -195,6 +195,30 @@ for i=1,8 do
 	})
 end
 
+minetest.register_node("default:wild_wheat", {
+		--drawtype = "nodebox",
+		drawtype = "plantlike",
+		tiles = {"default_wheat_7.png"},
+		paramtype = "light",
+		walkable = false,
+		buildable_to = true,
+		is_ground_content = true,
+		waving = 1,
+		drop = {
+			items = {
+				{items = {'default:wheat'},rarity=2},
+				{items = {'default:seed_wheat'},rarity=9},
+				{items = {'default:seed_wheat'}},
+				}
+		},
+		selection_box = {
+			type = "fixed",
+			fixed = {-0.4, -0.5, -0.4, 0.4, 0.5, 0.4},
+		},
+		groups = {snappy=3,flammable=2,plant=1,wheat=8,not_in_creative_inventory=1,attached_node=1},
+		sounds = default.node_sound_leaves_defaults(),
+	})
+
 --
 -- Cotton
 --

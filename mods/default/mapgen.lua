@@ -477,7 +477,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							
 						-- If dirt with grass, add grass
 						elseif nn == "default:dirt_with_grass" then
-							minetest.set_node(p,{name="default:grass_"..pr:next(1, 5)})
+							local p_name = "default:grass_"..pr:next(1, 5)
+							if pr:next(1,30) == 17 then p_name = "default:wild_wheat" end
+							minetest.set_node(p,{name=p_name})
 						end
 					end
 				end
