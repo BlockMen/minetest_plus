@@ -1,12 +1,11 @@
 Minetest+  -  a game for the Minetest game engine [based on minetest_game]
 =========
-Version 0.7
+Version 0.8
 
 About this game
 ---------------
 Minetest+ tries to be as near as possible at the default game (Minetest_game), but with a few improved things and a few new features.
 
-Namely these tweaks are based on "Default Plus" mod, which changes following:
 
 Version 0.1:
 New items:
@@ -76,8 +75,22 @@ Version 0.7:
 - Add stu's armor mod
 - Add parts of webdesigner97's fire_plus mod (breaking glass, punching hurts player)
 
-So hope you enjoy this game and like the changes i made to default game.
+Version 0.8:
+- Allow armor only in correct slots
+- Updated doors mod (added obsidian glass door)
+- Complete textures overhaul
+- Mese glows now
+- Ice is not transparent anymore
+- Got rid nyan cats
+- new hand
+- Restructured game; farming and wool part of default now
+- Switched HUD bar positions
+- Added wild wheat (drops seeds and most time wheat)
+- Added snow caps (if player is higher than 24(+0 to 4) blocks from water level)
+- Support for new waving shaders
 
+
+Have fun!
 
 
 License of source code

@@ -206,7 +206,7 @@ minetest.register_node("default:wild_wheat", {
 		waving = 1,
 		drop = {
 			items = {
-				{items = {'default:wheat'},rarity=2},
+				{items = {'default:wheat'},rarity=1.3},
 				{items = {'default:seed_wheat'},rarity=9},
 				{items = {'default:seed_wheat'}},
 				}

@@ -238,6 +238,7 @@ minetest.register_node("default:jungleleaves", {
 	description = "Jungle Leaves",
 	drawtype = "allfaces_optional",
 	visual_scale = 1.3,
+	waving = 1,
 	tiles = {"default_jungleleaves.png"},
 	paramtype = "light",
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
@@ -279,30 +280,11 @@ minetest.register_node("default:junglesapling", {
 minetest.register_alias("sapling", "default:sapling")
 minetest.register_alias("junglesapling", "default:junglesapling")
 
-minetest.register_node("default:junglegrass", {
-	description = "Jungle Grass",
-	drawtype = "plantlike",
-	visual_scale = 1.2,
-	tiles = {"default_junglegrass.png"},
-	inventory_image = "default_junglegrass.png",
-	wield_image = "default_junglegrass.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = true,
-	drop = "",
-	groups = {snappy=3,flammable=2,flora=1,attached_node=1,dig_immediate=3},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
-
 minetest.register_node("default:leaves", {
 	description = "Leaves",
 	drawtype = "allfaces_optional",
 	visual_scale = 1.3,
+	waving = 1,
 	tiles = {"default_leaves.png"},
 	paramtype = "light",
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
