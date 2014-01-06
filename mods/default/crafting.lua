@@ -46,6 +46,14 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'default:dirt_with_grass',
+	recipe = {
+		{'default:grass_5'},
+		{'default:dirt'},
+	}
+})
+
 --
 -- Tools
 --
