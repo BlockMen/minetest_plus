@@ -330,3 +330,61 @@ minetest.register_tool("default:sword_diamond", {
 		damage_groups = {fleshy=8},
 	}
 })
+
+--
+-- Hoes
+--
+
+minetest.register_tool("default:hoe_wood", {
+	description = "Wooden Hoe",
+	inventory_image = "default_tool_woodhoe.png",
+	
+	on_use = function(itemstack, user, pointed_thing)
+		return default.hoe_on_use(itemstack, user, pointed_thing, 30)
+	end,
+})
+
+minetest.register_tool("default:hoe_stone", {
+	description = "Stone Hoe",
+	inventory_image = "default_tool_stonehoe.png",
+	
+	on_use = function(itemstack, user, pointed_thing)
+		return default.hoe_on_use(itemstack, user, pointed_thing, 90)
+	end,
+})
+
+minetest.register_tool("default:hoe_steel", {
+	description = "Steel Hoe",
+	inventory_image = "default_tool_steelhoe.png",
+	
+	on_use = function(itemstack, user, pointed_thing)
+		return default.hoe_on_use(itemstack, user, pointed_thing, 200)
+	end,
+})
+
+minetest.register_tool("default:hoe_bronze", {
+	description = "Bronze Hoe",
+	inventory_image = "default_tool_bronzehoe.png",
+	
+	on_use = function(itemstack, user, pointed_thing)
+		return default.hoe_on_use(itemstack, user, pointed_thing, 220)
+	end,
+})
+
+minetest.register_tool("default:hoe_mese", {
+	description = "Mese Hoe",
+	inventory_image = "default_tool_mesehoe.png",
+	
+	on_use = function(itemstack, user, pointed_thing)
+		return default.hoe_on_use(itemstack, user, pointed_thing, 350)
+	end,
+})
+
+minetest.register_tool("default:hoe_diamond", {
+	description = "Diamond Hoe",
+	inventory_image = "default_tool_diamondhoe.png",
+	
+	on_use = function(itemstack, user, pointed_thing)
+		return default.hoe_on_use(itemstack, user, pointed_thing, 500)
+	end,
+})

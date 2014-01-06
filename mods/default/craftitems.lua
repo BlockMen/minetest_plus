@@ -97,3 +97,35 @@ minetest.register_craftitem("default:obsidian_shard", {
 	description = "Obsidian Shard",
 	inventory_image = "default_obsidian_shard.png",
 })
+
+minetest.register_craftitem("default:seed_wheat", {
+	description = "Wheat Seed",
+	inventory_image = "default_wheat_seed.png",
+	on_place = function(itemstack, placer, pointed_thing)
+		return default.place_seed(itemstack, placer, pointed_thing, "default:wheat_1")
+	end,
+})
+
+minetest.register_craftitem("default:wheat", {
+	description = "Wheat",
+	inventory_image = "default_wheat.png",
+})
+
+minetest.register_craftitem("default:flour", {
+	description = "Flour",
+	inventory_image = "default_flour.png",
+})
+
+minetest.register_craftitem("default:seed_cotton", {
+	description = "Cotton Seed",
+	inventory_image = "default_cotton_seed.png",
+	on_place = function(itemstack, placer, pointed_thing)
+		return default.place_seed(itemstack, placer, pointed_thing, "default:cotton_1")
+	end,
+})
+
+minetest.register_craftitem("default:string", {
+	description = "String",
+	inventory_image = "default_string.png",
+})
+

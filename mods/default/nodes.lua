@@ -131,6 +131,24 @@ minetest.register_node("default:dirt", {
 	sounds = default.node_sound_dirt_defaults(),
 })
 
+minetest.register_node("default:soil", {
+	description = "Soil",
+	tiles = {"default_soil.png", "default_dirt.png"},
+	drop = "default:dirt",
+	is_ground_content = true,
+	groups = {crumbly=3, not_in_creative_inventory=1, soil=2},
+	sounds = default.node_sound_dirt_defaults(),
+})
+
+minetest.register_node("default:soil_wet", {
+	description = "Wet Soil",
+	tiles = {"default_soil_wet.png", "default_soil_wet_side.png"},
+	drop = "default:dirt",
+	is_ground_content = true,
+	groups = {crumbly=3, not_in_creative_inventory=1, soil=3},
+	sounds = default.node_sound_dirt_defaults(),
+})
+
 minetest.register_node("default:sand", {
 	description = "Sand",
 	tiles = {"default_sand.png"},
@@ -299,51 +317,6 @@ minetest.register_node("default:leaves", {
 			}
 		}
 	},
-	sounds = default.node_sound_leaves_defaults(),
-})
-
-minetest.register_node("default:cactus", {
-	description = "Cactus",
-	tiles = {"default_cactus_top.png", "default_cactus_top.png", "default_cactus_side.png"},
-	is_ground_content = true,
-	groups = {snappy=1,choppy=3,flammable=2,oddly_breakable_by_hand=2},
-	sounds = default.node_sound_wood_defaults(),
-	drawtype = "nodebox",
-	paramtype = "light",
-	damage_per_second = 1,
-	node_box = {
-		type = "fixed",
-		fixed = {{-7/16, -0.5, -7/16, 7/16, 0.5, 7/16}, {-8/16, -0.5, -7/16, -7/16, 0.5, -7/16},
-			 {7/16, -0.5, -7/16, 7/16, 0.5, -8/16},{-7/16, -0.5, 7/16, -7/16, 0.5, 8/16},{7/16, -0.5, 7/16, 8/16, 0.5, 7/16}}--
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {-7/16, -0.5, -7/16, 7/16, 0.5, 7/16},
-				
-	},
-	on_punch = function(pos, node, puncher)
-		if not puncher then return end
-
-		if puncher:get_wielded_item():get_name() == "" then 
-			minetest.sound_play("player_damage", {pos = pos, gain = 0.3, max_hear_distance = 10}) 
-		end
-	end,
-})
-
-minetest.register_node("default:papyrus", {
-	description = "Papyrus",
-	drawtype = "plantlike",
-	tiles = {"default_papyrus.png"},
-	inventory_image = "default_papyrus.png",
-	wield_image = "default_papyrus.png",
-	paramtype = "light",
-	walkable = false,
-	is_ground_content = true,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
-	},
-	groups = {snappy=3,flammable=2},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -561,33 +534,6 @@ minetest.register_node("default:lava_source", {
 	post_effect_color = {a=192, r=255, g=64, b=0},
 	groups = {lava=3, liquid=2, hot=3, igniter=1},
 })
-
---[[minetest.register_node("default:torch", {
-	description = "Torch",
-	drawtype = "torchlike",
-	--tiles = {"default_torch_on_floor.png", "default_torch_on_ceiling.png", "default_torch.png"},
-	tiles = {
-		{name="default_torch_on_floor_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}},
-		{name="default_torch_on_ceiling_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}},
-		{name="default_torch_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}
-	},
-	inventory_image = "default_torch_on_floor.png",
-	wield_image = "default_torch_on_floor.png",
-	paramtype = "light",
-	paramtype2 = "wallmounted",
-	sunlight_propagates = true,
-	walkable = false,
-	light_source = LIGHT_MAX-1,
-	selection_box = {
-		type = "wallmounted",
-		wall_top = {-0.1, 0.5-0.6, -0.1, 0.1, 0.5, 0.1},
-		wall_bottom = {-0.1, -0.5, -0.1, 0.1, -0.5+0.6, 0.1},
-		wall_side = {-0.5, -0.3, -0.1, -0.5+0.3, 0.3, 0.1},
-	},
-	groups = {choppy=2,dig_immediate=3,flammable=1,attached_node=1},
-	legacy_wallmounted = true,
-	sounds = default.node_sound_defaults(),
-})]]
 
 minetest.register_node("default:sign_wall", {
 	description = "Sign",
@@ -947,18 +893,13 @@ minetest.register_node("default:furnace_active", {
 	end,
 })
 
-function hacky_swap_node(pos,name)
+local function swap_node(pos,name)
 	local node = minetest.get_node(pos)
-	local meta = minetest.get_meta(pos)
-	local meta0 = meta:to_table()
 	if node.name == name then
 		return
 	end
 	node.name = name
-	local meta0 = meta:to_table()
-	minetest.set_node(pos,node)
-	meta = minetest.get_meta(pos)
-	meta:from_table(meta0)
+	minetest.swap_node(pos,node)
 end
 
 minetest.register_abm({
@@ -1017,7 +958,7 @@ minetest.register_abm({
 				default.add_fire({x=pos.x+dpos.x, y=pos.y-0.52, z=pos.z+dpos.z}, 2-percent*0.01)--facedir auslesen
 			end
 			meta:set_string("infotext","Furnace active: "..percent.."%")
-			hacky_swap_node(pos,"default:furnace_active")
+			swap_node(pos,"default:furnace_active")
 			item_percent = meta:get_float("src_time")/cooked.time
 			meta:set_string("formspec",default.get_furnace_active_formspec(pos, percent, item_percent))
 			return
@@ -1038,7 +979,7 @@ minetest.register_abm({
 
 		if fuel.time <= 0 then
 			meta:set_string("infotext","Furnace out of fuel")
-			hacky_swap_node(pos,"default:furnace")
+			swap_node(pos,"default:furnace")
 			meta:set_string("formspec", default.furnace_inactive_formspec)
 			return
 		end
@@ -1046,7 +987,7 @@ minetest.register_abm({
 		if cooked.item:is_empty() then
 			if was_active then
 				meta:set_string("infotext","Furnace is empty")
-				hacky_swap_node(pos,"default:furnace")
+				swap_node(pos,"default:furnace")
 				meta:set_string("formspec", default.furnace_inactive_formspec)
 			end
 			return
@@ -1185,157 +1126,16 @@ minetest.register_node("default:sapling", {
 	sounds = default.node_sound_defaults(),
 })
 
-minetest.register_node("default:apple", {
-	description = "Apple",
-	drawtype = "plantlike",
-	visual_scale = 0.8,
-	tiles = {"default_apple.png"},
-	inventory_image = "default_apple.png",
-	paramtype = "light",
-	sunlight_propagates = true,
-	walkable = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.2, -0.5, -0.2, 0.2, -0.1, 0.2}
-	},
-	groups = {fleshy=3,dig_immediate=3,flammable=2,leafdecay=3,leafdecay_drop=1},
-	on_use = minetest.item_eat(1),
-	sounds = default.node_sound_defaults(),
-	after_place_node = function(pos, placer, itemstack)
-		if placer:is_player() then
-			minetest.set_node(pos, {name="default:apple", param2=1})
-		end
-	end,
-})
-
-minetest.register_node("default:dry_shrub", {
-	description = "Dry Shrub",
-	drawtype = "plantlike",
-	visual_scale = 1.0,
-	tiles = {"default_dry_shrub.png"},
-	inventory_image = "default_dry_shrub.png",
-	wield_image = "default_dry_shrub.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	drop = "",
-	groups = {snappy=3,flammable=3,attached_node=1,dig_immediate=3},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
-
-minetest.register_node("default:grass_1", {
-	description = "Grass",
-	drawtype = "plantlike",
-	tiles = {"default_grass_1.png"},
-	-- use a bigger inventory image
-	inventory_image = "default_grass_3.png",
-	wield_image = "default_grass_3.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	drop = "",
-	groups = {snappy=3,flammable=3,flora=1,attached_node=1,dig_immediate=3},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-	on_place = function(itemstack, placer, pointed_thing)
-		-- place a random grass node
-		local stack = ItemStack("default:grass_"..math.random(1,5))
-		local ret = minetest.item_place(stack, placer, pointed_thing)
-		return ItemStack("default:grass_1 "..itemstack:get_count()-(1-ret:get_count()))
-	end,
-})
-
-minetest.register_node("default:grass_2", {
-	description = "Grass",
-	drawtype = "plantlike",
-	tiles = {"default_grass_2.png"},
-	inventory_image = "default_grass_2.png",
-	wield_image = "default_grass_2.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = true,
-	drop = "",
-	groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1,dig_immediate=3},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
-minetest.register_node("default:grass_3", {
-	description = "Grass",
-	drawtype = "plantlike",
-	tiles = {"default_grass_3.png"},
-	inventory_image = "default_grass_3.png",
-	wield_image = "default_grass_3.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = true,
-	drop = "",
-	groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1,dig_immediate=3},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
-
-minetest.register_node("default:grass_4", {
-	description = "Grass",
-	drawtype = "plantlike",
-	tiles = {"default_grass_4.png"},
-	inventory_image = "default_grass_4.png",
-	wield_image = "default_grass_4.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = true,
-	drop = "",
-	groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1,dig_immediate=3},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
-
-minetest.register_node("default:grass_5", {
-	description = "Grass",
-	drawtype = "plantlike",
-	tiles = {"default_grass_5.png"},
-	inventory_image = "default_grass_5.png",
-	wield_image = "default_grass_5.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = true,
-	drop = "",
-	groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1,dig_immediate=3},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
-
 minetest.register_node("default:ice", {
 	description = "Ice",
 	tiles = {"default_ice.png"},
 	is_ground_content = true,
-	use_texture_alpha = true,
+	--use_texture_alpha = true,
 	inventory_image = minetest.inventorycube("default_ice.png"),
 	drawtype = "glasslike",
 	paramtype = "light",
 	groups = {cracky=3},
+	--alpha = WATER_ALPHA,
 	sounds = default.node_sound_glass_defaults(),
 })
 
@@ -1384,3 +1184,43 @@ minetest.register_node("default:snowblock", {
 		footstep = {name="default_grass_footstep", gain=0.4},
 	}),
 })
+
+local dyes = {
+	{"white",      "White",      nil},
+	{"grey",       "Grey",       "basecolor_grey"},
+	{"black",      "Black",      "basecolor_black"},
+	{"red",        "Red",        "basecolor_red"},
+	{"yellow",     "Yellow",     "basecolor_yellow"},
+	{"green",      "Green",      "basecolor_green"},
+	{"cyan",       "Cyan",       "basecolor_cyan"},
+	{"blue",       "Blue",       "basecolor_blue"},
+	{"magenta",    "Magenta",    "basecolor_magenta"},
+	{"orange",     "Orange",     "excolor_orange"},
+	{"violet",     "Violet",     "excolor_violet"},
+	{"brown",      "Brown",      "unicolor_dark_orange"},
+	{"pink",       "Pink",       "unicolor_light_red"},
+	{"dark_grey",  "Dark Grey",  "unicolor_darkgrey"},
+	{"dark_green", "Dark Green", "unicolor_dark_green"},
+}
+
+for _, row in ipairs(dyes) do
+	local name = row[1]
+	local desc = row[2]
+	local craft_color_group = row[3]
+	-- Node Definition
+	minetest.register_node("default:wool_"..name, {
+		description = desc.." Wool",
+		tiles = {"default_wool_"..name..".png"},
+		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1},
+		sounds = default.node_sound_defaults(),
+	})
+	minetest.register_alias("wool:"..name, "default:wool_"..name)
+	if craft_color_group then
+		-- Crafting from dye and white wool
+		minetest.register_craft({
+			type = "shapeless",
+			output = 'default:wool_'..name,
+			recipe = {'group:dye,'..craft_color_group, 'group:wool'},
+		})
+	end
+end

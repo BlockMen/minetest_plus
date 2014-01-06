@@ -46,6 +46,10 @@ minetest.register_craft({
 	}
 })
 
+--
+-- Tools
+--
+
 minetest.register_craft({
 	output = 'default:pick_wood',
 	recipe = {
@@ -259,6 +263,62 @@ minetest.register_craft({
 		{'default:diamond'},
 		{'default:diamond'},
 		{'default:stick'},
+	}
+})
+
+
+minetest.register_craft({
+	output = "default:hoe_wood",
+	recipe = {
+		{"group:wood", "group:wood"},
+		{"", "default:stick"},
+		{"", "default:stick"},
+	}
+})
+
+minetest.register_craft({
+	output = "default:hoe_stone",
+	recipe = {
+		{"group:stone", "group:stone"},
+		{"", "default:stick"},
+		{"", "default:stick"},
+	}
+})
+
+minetest.register_craft({
+	output = "default:hoe_steel",
+	recipe = {
+		{"default:steel_ingot", "default:steel_ingot"},
+		{"", "default:stick"},
+		{"", "default:stick"},
+	}
+})
+
+minetest.register_craft({
+	output = "default:hoe_bronze",
+	recipe = {
+		{"default:bronze_ingot", "default:bronze_ingot"},
+		{"", "default:stick"},
+		{"", "default:stick"},
+	}
+})
+
+minetest.register_craft({
+	output = "default:hoe_mese",
+	recipe = {
+		{"default:mese_crystal", "default:mese_crystal"},
+		{"", "default:stick"},
+		{"", "default:stick"},
+	}
+})
+
+
+minetest.register_craft({
+	output = "default:hoe_diamond",
+	recipe = {
+		{"default:diamond", "default:diamond"},
+		{"", "default:stick"},
+		{"", "default:stick"},
 	}
 })
 
@@ -551,6 +611,20 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = "wool:white",
+	recipe = {
+		{"default:string", "default:string"},
+		{"default:string", "default:string"},
+	}
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "default:flour",
+	recipe = {"default:wheat", "default:wheat", "default:wheat", "default:wheat"}
+})
+
 --
 -- Crafting (tool repair)
 --
@@ -609,6 +683,13 @@ minetest.register_craft({
 	type = "cooking",
 	output = "default:clay_brick",
 	recipe = "default:clay_lump",
+})
+
+minetest.register_craft({
+	type = "cooking",
+	cooktime = 15,
+	output = "default:bread",
+	recipe = "default:flour"
 })
 
 --

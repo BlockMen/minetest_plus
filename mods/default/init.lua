@@ -13,8 +13,12 @@ default = {}
 
 -- Load files
 dofile(minetest.get_modpath("default").."/functions.lua")
+dofile(minetest.get_modpath("default").."/sounds.lua")
 dofile(minetest.get_modpath("default").."/nodes.lua")
+dofile(minetest.get_modpath("default").."/plants.lua")
 dofile(minetest.get_modpath("default").."/tools.lua")
+dofile(minetest.get_modpath("default").."/food.lua")
+dofile(minetest.get_modpath("default").."/growing.lua")
 dofile(minetest.get_modpath("default").."/intweak.lua")
 dofile(minetest.get_modpath("default").."/craftitems.lua")
 dofile(minetest.get_modpath("default").."/crafting.lua")
