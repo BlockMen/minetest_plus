@@ -350,8 +350,6 @@ local air = minetest.get_content_id("air")
 local j1= minetest.get_content_id("default:jungletree")
 local j2 = minetest.get_content_id("default:jungleleaves")
 
-local SNOW_START = 24
-
 local function make_snow(min,max,data,va,rnd)
 	local cnt = max.x-min.x
 	for yi=0, cnt do
