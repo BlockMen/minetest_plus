@@ -388,3 +388,170 @@ minetest.register_tool("default:hoe_diamond", {
 		return default.hoe_on_use(itemstack, user, pointed_thing, 500)
 	end,
 })
+
+--armor
+-- Regisiter Head Armor
+
+minetest.register_tool("default:armor_helmet_wood", {
+	description = "Wood Helmet",
+	inventory_image = "default_armor_inv_helmet_wood.png",
+	groups = {armor_head=5, armor_heal=0, armor_use=2000},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_helmet_steel", {
+	description = "Steel Helmet",
+	inventory_image = "default_armor_inv_helmet_steel.png",
+	groups = {armor_head=10, armor_heal=0, armor_use=500},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_helmet_bronze", {
+	description = "Bronze Helmet",
+	inventory_image = "default_armor_inv_helmet_bronze.png",
+	groups = {armor_head=10, armor_heal=6, armor_use=250},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_helmet_diamond", {
+	description = "Diamond Helmet",
+	inventory_image = "default_armor_inv_helmet_diamond.png",
+	groups = {armor_head=15, armor_heal=12, armor_use=100},
+	wear = 0,
+})
+
+-- Regisiter Torso Armor
+
+minetest.register_tool("default:armor_chestplate_wood", {
+	description = "Wood Chestplate",
+	inventory_image = "default_armor_inv_chestplate_wood.png",
+	groups = {armor_torso=10, armor_heal=0, armor_use=2000},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_chestplate_steel", {
+	description = "Steel Chestplate",
+	inventory_image = "default_armor_inv_chestplate_steel.png",
+	groups = {armor_torso=15, armor_heal=0, armor_use=500},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_chestplate_bronze", {
+	description = "Bronze Chestplate",
+	inventory_image = "default_armor_inv_chestplate_bronze.png",
+	groups = {armor_torso=15, armor_heal=6, armor_use=250},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_chestplate_diamond", {
+	description = "Diamond Chestplate",
+	inventory_image = "default_armor_inv_chestplate_diamond.png",
+	groups = {armor_torso=20, armor_heal=12, armor_use=100},
+	wear = 0,
+})
+
+-- Regisiter Leg Armor
+
+minetest.register_tool("default:armor_leggings_wood", {
+	description = "Wood Leggings",
+	inventory_image = "default_armor_inv_leggings_wood.png",
+	groups = {armor_legs=5, armor_heal=0, armor_use=2000},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_leggings_steel", {
+	description = "Steel Leggings",
+	inventory_image = "default_armor_inv_leggings_steel.png",
+	groups = {armor_legs=15, armor_heal=0, armor_use=500},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_leggings_bronze", {
+	description = "Bronze Leggings",
+	inventory_image = "default_armor_inv_leggings_bronze.png",
+	groups = {armor_legs=15, armor_heal=6, armor_use=250},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_leggings_diamond", {
+	description = "Diamond Leggings",
+	inventory_image = "default_armor_inv_leggings_diamond.png",
+	groups = {armor_legs=20, armor_heal=12, armor_use=100},
+	wear = 0,
+})
+
+-- Regisiter Boots
+
+minetest.register_tool("default:armor_boots_wood", {
+	description = "Wood Boots",
+	inventory_image = "default_armor_inv_boots_wood.png",
+	groups = {armor_feet=5, armor_heal=0, armor_use=2000},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_boots_steel", {
+	description = "Steel Boots",
+	inventory_image = "default_armor_inv_boots_steel.png",
+	groups = {armor_feet=10, armor_heal=0, armor_use=500},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_boots_bronze", {
+	description = "Bronze Boots",
+	inventory_image = "default_armor_inv_boots_bronze.png",
+	groups = {armor_feet=10, armor_heal=6, armor_use=250},
+	wear = 0,
+})
+
+minetest.register_tool("default:armor_boots_diamond", {
+	description = "Diamond Boots",
+	inventory_image = "default_armor_inv_boots_diamond.png",
+	groups = {armor_feet=15, armor_heal=12, armor_use=100},
+	wear = 0,
+})
+
+
+-- Register Craft Recipies  default:armor_helmet_wood
+
+local craft_ingreds = {
+	wood = "default:wood",
+	steel = "default:steel_ingot",
+	bronze = "default:bronze_ingot",
+	diamond = "default:diamond",
+}
+
+for k, v in pairs(craft_ingreds) do
+	minetest.register_craft({
+		output = "default:armor_helmet_"..k,
+		recipe = {
+			{v, v, v},
+			{v, "", v},
+			{"", "", ""},
+		},
+	})
+	minetest.register_craft({
+		output = "default:armor_chestplate_"..k,
+		recipe = {
+			{v, "", v},
+			{v, v, v},
+			{v, v, v},
+		},
+	})
+	minetest.register_craft({
+		output = "default:armor_leggings_"..k,
+		recipe = {
+			{v, v, v},
+			{v, "", v},
+			{v, "", v},
+		},
+	})
+	minetest.register_craft({
+		output = "default:armor_boots_"..k,
+		recipe = {
+			{v, "", v},
+			{v, "", v},
+		},
+	})
+end
+
+

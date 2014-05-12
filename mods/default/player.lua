@@ -50,6 +50,10 @@ model_def = {
 
 ]]
 
+default.player = {}
+--default.player.armor = {}
+
+
 -- Player animation blending
 -- Note: This is currently broken due to a bug in Irrlicht, leave at 0
 local animation_blend = 0
@@ -65,7 +69,7 @@ end
 
 -- Default player appearance
 default.player_register_model("character.x", {
-	animation_speed = 30,
+	animation_speed = 25,
 	textures = {"character.png"},
 	animations = {
 		-- Standard animations.
@@ -159,7 +163,9 @@ end
 
 -- Update appearance and formspec when the player joins
 minetest.register_on_joinplayer(function(player)
+	default.player[player:get_player_name()] = {}--player
 	default.player_set_model(player, "character.x")
+	player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 22)--18 for sneaking perfect
 	if minetest.setting_getbool("creative_mode") then
 		creative.set_creative_formspec(player, 0, 1)
 	else
@@ -208,6 +214,13 @@ minetest.register_globalstep(function(dtime)
 				player_set_animation(player, "mine")
 			else
 				player_set_animation(player, "stand", animation_speed_mod)
+			end
+
+			-- sprint
+			if controls.up and controls.left and controls.right then
+				player:set_physics_override(1.8, 1, 1)
+			else
+				player:set_physics_override(1, 1, 1)
 			end
 		end
 	end
