@@ -173,7 +173,7 @@ minetest.register_node("default:gravel", {
 	description = "Gravel",
 	tiles = {"default_gravel.png"},
 	is_ground_content = true,
-	groups = {crumbly=2, falling_node=1},
+	groups = {crumbly=3, falling_node=1},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.45},
 	}),
@@ -283,7 +283,7 @@ minetest.register_alias("junglesapling", "default:junglesapling")
 minetest.register_node("default:leaves", {
 	description = "Leaves",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
+	--visual_scale = 1.3,
 	waving = 1,
 	tiles = {"default_leaves.png"},
 	paramtype = "light",
@@ -304,6 +304,7 @@ minetest.register_node("default:leaves", {
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
+	sunlight_propagates = false,
 })
 
 minetest.register_node("default:bookshelf", {
