@@ -16,6 +16,7 @@ default.armor_update_visual = function(player)
 	default.player_set_textures(player, {"character.png",
 			textures:sub(1),
 			"default_trans.png",--to show no wielded items
+			"default_trans.png",
 		})
 end
 
@@ -84,6 +85,12 @@ minetest.register_on_joinplayer(function(player)
 	default.player[name].armor = {}
 	default.player[name].armor["cnt"] = 0
 	default.player[name].armor["wear"] = 0
+
+	default.player_set_textures(player, {"character.png",
+			"default_trans.png",
+			"default_trans.png",--to show no wielded items
+			"default_trans.png",
+		})
 
 	local player_inv = player:get_inventory()
 	local armor_inv = minetest.create_detached_inventory(name.."_armor",{

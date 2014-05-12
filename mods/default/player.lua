@@ -88,6 +88,7 @@ local player_model = {}
 local player_textures = {}
 local player_anim = {}
 local player_sneak = {}
+local player_wielded = {}
 
 function default.player_get_animation(player)
 	local name = player:get_player_name()
@@ -122,10 +123,59 @@ function default.player_set_model(player, model_name)
 	player_model[name] = model_name
 end
 
+local function get_wielded(player, txtures)
+	local name = player:get_player_name()
+	local item = player:get_wielded_item()
+	local item_name = item:get_name()
+	local update = false
+	if player_wielded[name] ~= item_name then
+		update = true
+		player_wielded[name] = item_name
+	else
+		return txtures, false
+	end
+
+	local i_txt = "default_trans.png"
+	local b_txt = "default_trans.png"
+
+	if item and item_name then
+		local def = minetest.registered_items[item_name]
+		if def then
+			if def.drawtype and def.drawtype == "normal" or def.drawtype == "allfaces_optional" then-- and not def.drawtype == "torchlike" then
+				b_txt = def.tiles[1]
+			else
+				if def.drawtype then
+					i_txt = def.inventory_image.."^[transformR90"
+				else
+					i_txt = def.inventory_image
+				end
+			end	
+		end
+		if item_name == "" then
+			i_txt = "default_trans.png"
+		end
+	end
+	if not txtures then
+		txtures = player_textures[name]
+	end
+	txtures[3] = i_txt
+	txtures[4] = b_txt
+	--print(dump(i_txt))
+	return txtures, update
+end
+
 function default.player_set_textures(player, textures)
 	local name = player:get_player_name()
-	player_textures[name] = textures
-	player:set_properties({textures = textures,})
+	if not textures then
+		--local name = player:get_player_name()
+		textures = player_textures[name]
+	else
+		player_wielded[name] = ""
+	end
+	local new_textures = get_wielded(player, textures)
+	player_textures[name] = new_textures
+	--print(dump(new_textures))
+	player:set_properties({textures = new_textures,})
 end
 
 function default.player_set_animation(player, anim_name, speed)
@@ -183,6 +233,10 @@ minetest.register_globalstep(function(dtime)
 		local model_name = player_model[name]
 		local model = model_name and models[model_name]
 		if model then
+			local txt, update = get_wielded(player)
+			if update then
+				default.player_set_textures(player)
+			end
 			local controls = player:get_player_control()
 			local walking = false
 			local animation_speed_mod = model.animation_speed or 30
