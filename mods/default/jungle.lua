@@ -92,7 +92,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		return
 	end
 
-	if minp.y >= SNOW_START-5 then-- or maxp.y >= SNOW_START then
+	if minp.y >= SNOW_START/2 then-- or maxp.y >= SNOW_START then
 		return
 	end
 
