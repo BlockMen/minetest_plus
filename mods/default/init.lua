@@ -28,6 +28,7 @@ dofile(minetest.get_modpath("default").."/mapgen.lua")
 dofile(minetest.get_modpath("default").."/player.lua")
 dofile(minetest.get_modpath("default").."/armor.lua")
 dofile(minetest.get_modpath("default").."/hud.lua")
+dofile(minetest.get_modpath("default").."/hunger.lua")
 dofile(minetest.get_modpath("default").."/torches.lua")
 dofile(minetest.get_modpath("default").."/trees.lua")
 

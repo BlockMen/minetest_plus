@@ -15,7 +15,7 @@ default.armor_update_visual = function(player)
 	if textures == "" then textures = "default_armor_trans.png" end
 	default.player_set_textures(player, {"character.png",
 			textures:sub(1),
-			"default_trans.png",--to show no wielded items
+			"default_trans.png",
 			"default_trans.png",
 		})
 end
@@ -71,13 +71,13 @@ default.armor_update = function(player, heal, list, old_hp)
 	end
 	if default.hud ~= nil then
 		default.hud.armor[name] = lvl*(items*5)
+		default.hud.event_handler(player, "armor_changed")
 	end
 	default.armor_update_visual(player)
 	if heal and heal_max > math.random(100) and player:get_hp() > 0 then
 		--player:set_hp(old_hp)
 		return true
 	end
-	--default.armor_update_visual(player)
 end
 
 minetest.register_on_joinplayer(function(player)
