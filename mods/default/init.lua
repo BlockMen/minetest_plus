@@ -7,7 +7,7 @@ WATER_ALPHA = 200
 WATER_VISC = 1
 LAVA_VISC = 7
 LIGHT_MAX = 14
-SNOW_START = 24
+SNOW_START = 27
 
 -- Definitions made by this mod that other mods can use too
 default = {}
@@ -24,6 +24,7 @@ dofile(minetest.get_modpath("default").."/intweak.lua")
 dofile(minetest.get_modpath("default").."/craftitems.lua")
 dofile(minetest.get_modpath("default").."/crafting.lua")
 dofile(minetest.get_modpath("default").."/jungle.lua")
+dofile(minetest.get_modpath("default").."/conifers.lua")
 dofile(minetest.get_modpath("default").."/mapgen.lua")
 dofile(minetest.get_modpath("default").."/player.lua")
 dofile(minetest.get_modpath("default").."/armor.lua")

@@ -227,6 +227,13 @@ minetest.register_node("default:jungletree", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
+minetest.register_node("default:conifer", {
+	description = "Conifer",
+	tiles = {"default_conifer_top.png", "default_conifer_top.png", "default_conifer.png"},
+	groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
+	sounds = default.node_sound_wood_defaults(),
+})
+
 minetest.register_node("default:junglewood", {
 	description = "Junglewood Planks",
 	tiles = {"default_junglewood.png"},
@@ -254,6 +261,32 @@ minetest.register_node("default:jungleleaves", {
 				-- player will get leaves only if he get no saplings,
 				-- this is because max_items is 1
 				items = {'default:jungleleaves'},
+			}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_node("default:needles", {
+	description = "Needles",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	waving = 1,
+	tiles = {"default_needles.png"},
+	paramtype = "light",
+	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
+	drop = {
+		max_items = 1,
+		items = {
+			{
+				-- player will get sapling with 1/20 chance
+				items = {'default:junglesapling'},
+				rarity = 20,
+			},
+			{
+				-- player will get leaves only if he get no saplings,
+				-- this is because max_items is 1
+				items = {'default:needles'},
 			}
 		}
 	},
