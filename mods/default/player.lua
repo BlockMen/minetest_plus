@@ -88,6 +88,7 @@ local player_model = {}
 local player_textures = {}
 local player_anim = {}
 local player_sneak = {}
+local player_sprint = {}
 local player_wielded = {}
 
 function default.player_get_animation(player)
@@ -192,6 +193,20 @@ function default.player_set_animation(player, anim_name, speed)
 	player:set_animation(anim, speed or model.animation_speed, animation_blend)
 end
 
+function default.player_set_sprint(player, state)
+	local name = player:get_player_name()
+	if player_sprint[name] == state then
+		return
+	else
+		player_sprint[name] = state
+		if state == true then
+			player:set_physics_override(1.8, 1, 1)
+		else
+			player:set_physics_override(1, 1, 1)
+		end
+	end	
+end
+
 function default.set_player_inventory(player)
 	local player_name = player:get_player_name()
         player:set_inventory_formspec(
@@ -225,6 +240,7 @@ end)
 
 -- Localize for better performance.
 local player_set_animation = default.player_set_animation
+local player_set_sprint = default.player_set_sprint
 
 -- Check each player and apply animations
 minetest.register_globalstep(function(dtime)
@@ -272,9 +288,9 @@ minetest.register_globalstep(function(dtime)
 
 			-- sprint
 			if controls.up and controls.left and controls.right then
-				player:set_physics_override(1.8, 1, 1)
+				player_set_sprint(player, true)
 			else
-				player:set_physics_override(1, 1, 1)
+				player_set_sprint(player, false)
 			end
 		end
 	end
