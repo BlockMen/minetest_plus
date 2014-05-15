@@ -43,10 +43,16 @@ rainforest = {}
 -- Function
 
 local function watershed_jungletree(x, y, z, area, data)
+	if y >= SNOW_START then
+		return
+	end
 	local c_juntree = minetest.get_content_id("default:jungletree")
 	local c_junleaf = minetest.get_content_id("default:jungleleaves")
 	--local c_vine = minetest.get_content_id("rainforest:vine")
 	local top = math.random(17,23)
+	if y+top > SNOW_START then
+		top = SNOW_START - y + math.random(-1,5)
+	end
 	local branch = math.floor(top * 0.6)
 	for j = -5, top do
 		if j == top or j == top - 1 or j == branch + 1 or j == branch + 2 then
@@ -86,17 +92,18 @@ local function watershed_jungletree(x, y, z, area, data)
 end
 
 -- On generated function
+local snow_value = SNOW_START/2+3
 
 minetest.register_on_generated(function(minp, maxp, seed)
 	if minp.y ~= -32 then
 		return
 	end
 
-	if minp.y >= SNOW_START/2 then-- or maxp.y >= SNOW_START then
+	if minp.y >= snow_value then-- or maxp.y >= SNOW_START then
 		return
 	end
 
-	local t1 = os.clock()
+	--local t1 = os.clock()
 	local x1 = maxp.x
 	local y1 = maxp.y
 	local z1 = maxp.z
@@ -104,7 +111,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local y0 = minp.y
 	local z0 = minp.z
 	
-	print ("[rainforest] chunk minp ("..x0.." "..y0.." "..z0..")")
+	--print ("[rainforest] chunk minp ("..x0.." "..y0.." "..z0..")")
 	
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
@@ -128,7 +135,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local nixz = 1 -- 2D noise index
 	for z = z0, z1 do
 	for x = x0, x1 do
-		if nvals_snow[nixz] < -0.5 then -- if away from snow biomes
+		local n_val = nvals_snow[nixz]
+		if n_val < -0.6 and n_val > -0.8 then -- if away from snow biomes
 			local spawny = false
 			for y = y1, 1, -1 do -- find surface and erase appletrees
 				local vi = area:index(x, y, z)
@@ -142,9 +150,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					data[vi] = c_air -- erase
 				end
 			end
-			if spawny and math.random(JUTCHA) == 2 then
+			if spawny and spawny < snow_value and math.random(JUTCHA) == 2 then
 				watershed_jungletree(x, spawny, z, area, data)
-			elseif spawny and math.random(JUGCHA) == 2 then
+			elseif spawny  and spawny < snow_value and math.random(JUGCHA) == 2 then
 				local visp = area:index(x, spawny, z)
 				data[visp] = c_jgrass[math.random(1,2)]
 			end
@@ -157,6 +165,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:set_lighting({day=0, night=0})
 	vm:calc_lighting()
 	vm:write_to_map(data)
-	local chugent = math.ceil((os.clock() - t1) * 1000)
-	print ("[rainforest] "..chugent.." ms")
+	--local chugent = math.ceil((os.clock() - t1) * 1000)
+	--print ("[rainforest] "..chugent.." ms")
 end)
