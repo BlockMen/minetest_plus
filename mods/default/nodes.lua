@@ -241,6 +241,13 @@ minetest.register_node("default:junglewood", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
+minetest.register_node("default:conifer_wood", {
+	description = "Conifer Planks",
+	tiles = {"default_wood_conifer.png"},
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
 minetest.register_node("default:jungleleaves", {
 	description = "Jungle Leaves",
 	drawtype = "allfaces_optional",
