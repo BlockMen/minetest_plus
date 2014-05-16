@@ -514,7 +514,7 @@ minetest.register_tool("default:armor_boots_diamond", {
 -- Register Craft Recipies  default:armor_helmet_wood
 
 local craft_ingreds = {
-	wood = "default:wood",
+	wood = "group:wood",
 	steel = "default:steel_ingot",
 	bronze = "default:bronze_ingot",
 	diamond = "default:diamond",
