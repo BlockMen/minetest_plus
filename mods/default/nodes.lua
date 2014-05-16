@@ -287,7 +287,7 @@ minetest.register_node("default:needles", {
 		items = {
 			{
 				-- player will get sapling with 1/20 chance
-				items = {'default:junglesapling'},
+				items = {'default:conifer_sapling'},
 				rarity = 20,
 			},
 			{
@@ -298,6 +298,23 @@ minetest.register_node("default:needles", {
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_node("default:conifer_sapling", {
+	description = "Conifer Sapling",
+	drawtype = "plantlike",
+	visual_scale = 1.0,
+	tiles = {"default_conifer_sapling.png"},
+	inventory_image = "default_conifer_sapling.png",
+	wield_image = "default_conifer_sapling.png",
+	paramtype = "light",
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
+	},
+	groups = {snappy=2,dig_immediate=3,flammable=2,attached_node=1},
+	sounds = default.node_sound_defaults(),
 })
 
 minetest.register_node("default:junglesapling", {

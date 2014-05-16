@@ -24,42 +24,14 @@ local np_snow = {
 }
 
 -- Function
-
-local function add_conifer(x, y, z, area, data)
-	local top = math.random(12,16)
-	local branch = math.floor(top * 0.5)
-	local aaa = 1
-	for j = 0, top do
-		if j > branch and j <= top and aaa < 1 then -- öeaves
-			aaa = 1
-			local w = top-j-1
-			if w > 3 then w = 3 end
-			for i = -w, w do
-			for k = -w, w do
-				local vi = area:index(x + i, y + j, z + k)
-				--if math.random(5) ~= 2 then
-					data[vi] = c_needles
-				--end
-			end
-			end
-		elseif aaa > 0 then
-			aaa = 0
-		end
-		if j >= -1 and j <= top - 3 then -- trunk
-			local vi = area:index(x, y + j, z)
-			data[vi] = c_trunk
-		end
-	end
-	local vi = area:index(x, y+top-2, z)
-	data[vi] = c_needles
-end
+local grow_conifer = default.grow_conifer
 
 -- On generated function
 
 minetest.register_on_generated(function(minp, maxp, seed)
-	--[[if minp.y ~= -32 then
+	if minp.y ~= -32 then
 		return
-	end]]
+	end
 
 	if minp.y >= SNOW_START-5 then-- or maxp.y >= SNOW_START then
 		return
@@ -103,7 +75,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				end
 			end
 			if spawny and math.random(COTCHA) == 2 then
-				add_conifer(x, spawny, z, area, data)
+				grow_conifer(x, spawny, z, area, data)
 			end
 		end
 		nixz = nixz + 1 -- increment 2D noise index

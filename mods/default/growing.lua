@@ -50,17 +50,34 @@ minetest.register_abm({
         interval = 10,
         chance = 50,
         action = function(pos, node)
-                local is_soil = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name].groups.soil
-                if is_soil == nil or is_soil == 0 then return end
-                print("A jungle sapling grows into a tree at "..minetest.pos_to_string(pos))
-                local vm = minetest.get_voxel_manip()
-                local minp, maxp = vm:read_from_map({x=pos.x-16, y=pos.y-1, z=pos.z-16}, {x=pos.x+16, y=pos.y+16, z=pos.z+16})
-                local a = VoxelArea:new{MinEdge=minp, MaxEdge=maxp}
-                local data = vm:get_data()
-                default.grow_jungletree(data, a, pos, math.random(1,100000))
-                vm:set_data(data)
-                vm:write_to_map(data)
-                vm:update_map()
+		local is_soil = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name].groups.soil
+		if is_soil == nil or is_soil == 0 then return end
+		local vm = minetest.get_voxel_manip()
+		local minp, maxp = vm:read_from_map({x=pos.x-16, y=pos.y-1, z=pos.z-16}, {x=pos.x+16, y=pos.y+24, z=pos.z+16})
+		local a = VoxelArea:new{MinEdge=minp, MaxEdge=maxp}
+		local data = vm:get_data()
+		default.grow_jungletree(pos.x, pos.y, pos.z, a, data)--pos, math.random(1,100000))(x, y, z, area, data)--(data, a, pos, seed)
+		vm:set_data(data)
+		vm:write_to_map(data)
+		vm:update_map()
+        end
+})
+
+minetest.register_abm({
+        nodenames = {"default:conifer_sapling"},
+        interval = 10,
+        chance = 50,
+        action = function(pos, node)
+		local is_soil = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name].groups.soil
+		if is_soil == nil or is_soil == 0 then return end
+		local vm = minetest.get_voxel_manip()
+		local minp, maxp = vm:read_from_map({x=pos.x-16, y=pos.y-1, z=pos.z-16}, {x=pos.x+16, y=pos.y+17, z=pos.z+16})
+		local a = VoxelArea:new{MinEdge=minp, MaxEdge=maxp}
+		local data = vm:get_data()
+		default.grow_conifer(pos.x, pos.y, pos.z, a, data)
+		vm:set_data(data)
+		vm:write_to_map(data)
+		vm:update_map()
         end
 })
 
