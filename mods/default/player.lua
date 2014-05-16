@@ -327,8 +327,8 @@ end
 minetest.after(0, function()
 	minetest.register_item(":", {
 		type = "none",
-		wield_image = minetest.inventorycube("hand_top.png", "hand_left.png", "hand_right.png"),
-		wield_scale = {x=0.6,y=1.1,z=3.8},
+		wield_image = "wieldhand.png",
+		wield_scale = {x=0.9,y=1,z=3.2},
 		tool_capabilities = tool_cap,
 	})
 end)
