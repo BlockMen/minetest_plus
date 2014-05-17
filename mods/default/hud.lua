@@ -2,7 +2,6 @@ default.hud = {}
 -- HUD statbar values
 default.hud.health = {}
 default.hud.hunger = {}
-default.hud.air = {}
 default.hud.armor = {}
 default.hud.hunger_out = {}
 default.hud.armor_out = {}
@@ -10,7 +9,6 @@ default.hud.armor_out = {}
 -- HUD item ids
 local health_hud = {}
 local hunger_hud = {}
-local air_hud = {}
 local armor_hud = {}
 local armor_hud_bg = {}
 
@@ -96,8 +94,7 @@ local function custom_hud(player)
 	})
 
  --air
-	minetest.hud_replace_builtin("breath", 
-	{
+	minetest.hud_replace_builtin("breath", {
 		hud_elem_type = "statbar",
 		position = HUD_AIR_POS,
 		size = {x=24,y=24},
@@ -105,7 +102,7 @@ local function custom_hud(player)
 		number = 0,
 		alignment = {x=-1,y=-1},
 		offset = HUD_AIR_OFFSET,
-	})--air_hud[name] = player:hud_add(
+	})
 
  --armor
  if HUD_SHOW_ARMOR then
@@ -131,25 +128,10 @@ local function custom_hud(player)
  end
 end
 
---needs to be defined for older version of 3darmor
-function default.hud.set_armor()
-end
-
-
---if HUD_ENABLE_HUNGER then dofile(minetest.get_modpath("hud").."/hunger.lua") end
---if HUD_SHOW_ARMOR then dofile(minetest.get_modpath("hud").."/armor.lua") end
-
 -- update hud elemtens if value has changed
 local function update_hud(player, item)
 	local name = player:get_player_name()
- --[[air
-	local air = tonumber(default.hud.air[name])
-	if player:get_breath() ~= air then
-		air = player:get_breath()
-		default.hud.air[name] = air
-		if air > 10 then air = 0 end
-		player:hud_change(air_hud[name], "number", air*2)
-	end]]
+
  --health
 	local hp = tonumber(default.hud.health[name])
 	if item == "health" and player:get_hp() ~= hp then
@@ -194,12 +176,13 @@ function default.hud.event_handler(player, eventname)
 
 	if eventname == "health_changed" then
 		update_hud(player, "health")
-		--update_armor()
+		if player:get_hp() < 1 then
+			default.player_set_animation(player, "lay")
+		end
 		return true
 	end
 
 	if eventname == "breath_changed" then
-		--update_hud(player)
 		return true
 	end
 
@@ -267,6 +250,7 @@ minetest.register_on_joinplayer(function(player)
 end)
 
 minetest.register_on_respawnplayer(function(player)
+	default.player_set_animation(player, "stand", 25)
 	-- reset player breath since the engine doesnt
 	player:set_breath(11)
 	-- reset hunger (and save)

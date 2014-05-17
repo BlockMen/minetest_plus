@@ -20,10 +20,6 @@ local np_snow = {
 	persist = 0.5
 }
 
--- Stuff
-
-rainforest = {}
-
 -- Nodes
 
 --[[minetest.register_node("rainforest:vine", {
@@ -46,44 +42,41 @@ local grow_jungletree = default.grow_jungletree
 -- On generated function
 local snow_value = SNOW_START/2+3
 
+local c_grass = minetest.get_content_id("default:dirt_with_grass")
+local c_jgrass = {}
+c_jgrass[1] = minetest.get_content_id("default:junglegrass")
+c_jgrass[2] = minetest.get_content_id("default:junglegrass_small")
+local c_tree = minetest.get_content_id("default:tree")
+local c_leaves = minetest.get_content_id("default:leaves")
+local c_apple = minetest.get_content_id("default:apple")
+local c_air = minetest.get_content_id("air")
+
 minetest.register_on_generated(function(minp, maxp, seed)
 	if minp.y ~= -32 then
 		return
 	end
 
-	if minp.y >= snow_value then-- or maxp.y >= SNOW_START then
+	if minp.y >= snow_value then
 		return
 	end
 
-	--local t1 = os.clock()
 	local x1 = maxp.x
 	local y1 = maxp.y
 	local z1 = maxp.z
 	local x0 = minp.x
 	local y0 = minp.y
 	local z0 = minp.z
-	
-	--print ("[rainforest] chunk minp ("..x0.." "..y0.." "..z0..")")
-	
+
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
 	local data = vm:get_data()
-	
-	local c_grass = minetest.get_content_id("default:dirt_with_grass")
-	local c_jgrass = {}
-	c_jgrass[1] = minetest.get_content_id("default:junglegrass")
-	c_jgrass[2] = minetest.get_content_id("default:junglegrass_small")
-	local c_tree = minetest.get_content_id("default:tree")
-	local c_leaves = minetest.get_content_id("default:leaves")
-	local c_apple = minetest.get_content_id("default:apple")
-	local c_air = minetest.get_content_id("air")
-	
+
 	local sidelen = x1 - x0 + 1
 	local chulens = {x=sidelen, y=sidelen, z=sidelen}
 	local minposxz = {x=x0, y=z0}
-	
+
 	local nvals_snow = minetest.get_perlin_map(np_snow, chulens):get2dMap_flat(minposxz)
-	
+
 	local nixz = 1 -- 2D noise index
 	for z = z0, z1 do
 	for x = x0, x1 do
@@ -112,11 +105,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		nixz = nixz + 1 -- increment 2D noise index
 	end
 	end
-	
+
 	vm:set_data(data)
 	vm:set_lighting({day=0, night=0})
 	vm:calc_lighting()
 	vm:write_to_map(data)
-	--local chugent = math.ceil((os.clock() - t1) * 1000)
-	--print ("[rainforest] "..chugent.." ms")
 end)

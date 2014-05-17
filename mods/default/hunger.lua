@@ -35,11 +35,6 @@ minetest.after(2.5, function()
 					default.hud.set_hunger(player)
 				end
 			 end
-			 -- update current armor level
-			 --if HUD_SHOW_ARMOR then default.hud.get_armor(player) end
-
-			 -- update all hud elements
-			 --update_hud(player)
 			end
 		 end
 		

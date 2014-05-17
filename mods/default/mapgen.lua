@@ -285,7 +285,6 @@ function default.generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume
 	local pr = PseudoRandom(seed)
 	local num_chunks = math.floor(chunks_per_volume * volume)
 	local inverse_chance = math.floor(chunk_size*chunk_size*chunk_size / ore_per_chunk)
-	--print("generate_ore num_chunks: "..dump(num_chunks))
 	for i=1,num_chunks do
 		local y0 = pr:next(y_min, y_max-chunk_size+1)
 		if y0 >= height_min and y0 <= height_max then
@@ -309,7 +308,6 @@ function default.generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume
 			end
 		end
 	end
-	--print("generate_ore done")
 end
 
 function default.make_papyrus(pos, size)

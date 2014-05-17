@@ -1,6 +1,5 @@
 --torches = {}
 
-
 function check_attached_node_fdir(p, n)
 	local def = minetest.registered_nodes[n.name]
 	local d = {x=0, y=0, z=0}

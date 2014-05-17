@@ -8,42 +8,6 @@ function default.spawn_falling_node(p, nodename)
 	spawn_falling_node(p, nodename)
 end
 
--- Horrible crap to support old code
--- Don't use this and never do what this does, it's completely wrong!
--- (More specifically, the client and the C++ code doesn't get the group)
-function default.register_falling_node(nodename, texture)
-	minetest.log("error", debug.traceback())
-	minetest.log('error', "WARNING: default.register_falling_node is deprecated")
-	if minetest.registered_nodes[nodename] then
-		minetest.registered_nodes[nodename].groups.falling_node = 1
-	end
-end
-
---
--- Global callbacks
---
-
--- Global environment step function
-function on_step(dtime)
-	-- print("on_step")
-end
-minetest.register_globalstep(on_step)
-
-function on_placenode(p, node)
-	--print("on_placenode")
-end
-minetest.register_on_placenode(on_placenode)
-
-function on_dignode(p, node)
-	--print("on_dignode")
-end
-minetest.register_on_dignode(on_dignode)
-
-function on_punchnode(p, node)
-end
-minetest.register_on_punchnode(on_punchnode)
-
-
 --
 -- Remove grass
 --
@@ -63,8 +27,6 @@ minetest.register_abm({
                 end
         end
 })
-
-
 
 --
 -- Lavacooling
@@ -135,16 +97,13 @@ minetest.register_abm({
 	chance = 5,
 
 	action = function(p0, node, _, _)
-		--print("leafdecay ABM at "..p0.x..", "..p0.y..", "..p0.z..")")
 		local do_preserve = false
 		local d = minetest.registered_nodes[node.name].groups.leafdecay
 		if not d or d == 0 then
-			--print("not groups.leafdecay")
 			return
 		end
 		local n0 = minetest.get_node(p0)
 		if n0.param2 ~= 0 then
-			--print("param2 ~= 0")
 			return
 		end
 		local p0_hash = nil
@@ -159,7 +118,6 @@ minetest.register_abm({
 					--print("cached trunk still exists")
 					return
 				end
-				--print("cached trunk is invalid")
 				-- Cache is invalid
 				table.remove(default.leafdecay_trunk_cache, p0_hash)
 			end
@@ -174,7 +132,6 @@ minetest.register_abm({
 		if p1 then
 			do_preserve = true
 			if default.leafdecay_enable_cache then
-				--print("caching trunk")
 				-- Cache the trunk
 				default.leafdecay_trunk_cache[p0_hash] = p1
 			end
@@ -224,7 +181,6 @@ minetest.register_abm({
 	interval = 1,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		--pos.y =pos.y-0.4
 		for _,object in ipairs(minetest.env:get_objects_inside_radius(pos, 15.1/16)) do--1.3
 			if object:get_hp() > 0 then
 				object:set_hp(object:get_hp()-1)

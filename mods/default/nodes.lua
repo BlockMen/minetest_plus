@@ -116,7 +116,6 @@ minetest.register_node("default:dirt_with_snow", {
 	tiles = {"default_snow.png", "default_dirt.png", "default_dirt.png^default_snow_side.png"},
 	is_ground_content = true,
 	groups = {crumbly=3},
-	--drop = 'default:dirt',
 	drop = {
 		items = {
 			{items = {'default:snow'},rarity = 1.2},
@@ -340,7 +339,6 @@ minetest.register_alias("junglesapling", "default:junglesapling")
 minetest.register_node("default:leaves", {
 	description = "Leaves",
 	drawtype = "allfaces_optional",
-	--visual_scale = 1.3,
 	waving = 1,
 	tiles = {"default_leaves.png"},
 	paramtype = "light",
@@ -425,9 +423,6 @@ minetest.register_node("default:ladder", {
 	climbable = true,
 	selection_box = {
 		type = "wallmounted",
-		--wall_top = = <default>
-		--wall_bottom = = <default>
-		--wall_side = = <default>
 	},
 	groups = {choppy=2,oddly_breakable_by_hand=3,flammable=2},
 	legacy_wallmounted = true,
@@ -591,21 +586,16 @@ minetest.register_node("default:sign_wall", {
 	walkable = false,
 	selection_box = {
 		type = "wallmounted",
-		--wall_top = <default>
-		--wall_bottom = <default>
-		--wall_side = <default>
 	},
 	groups = {choppy=2,dig_immediate=2,attached_node=1},
 	legacy_wallmounted = true,
 	sounds = default.node_sound_defaults(),
 	on_construct = function(pos)
-		--local n = minetest.get_node(pos)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec", "field[text;;${text}]")
 		meta:set_string("infotext", "\"\"")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
-		--print("Sign at "..minetest.pos_to_string(pos).." got "..dump(fields))
 		local meta = minetest.get_meta(pos)
 		fields.text = fields.text or ""
 		print((sender:get_player_name() or "").." wrote \""..fields.text..
@@ -999,7 +989,7 @@ minetest.register_abm({
 					meta:get_float("fuel_totaltime") * 100)
 			for i=0, 0.4, 0.1 do
 				local dpos = default.facedir_to_dir(node.param2)
-				default.add_fire({x=pos.x+dpos.x, y=pos.y-0.52, z=pos.z+dpos.z}, 2-percent*0.01)--facedir auslesen
+				default.add_fire({x=pos.x+dpos.x, y=pos.y-0.52, z=pos.z+dpos.z}, 2-percent*0.01)
 			end
 			meta:set_string("infotext","Furnace active: "..percent.."%")
 			swap_node(pos,"default:furnace_active")
@@ -1174,12 +1164,10 @@ minetest.register_node("default:ice", {
 	description = "Ice",
 	tiles = {"default_ice.png"},
 	is_ground_content = true,
-	--use_texture_alpha = true,
 	inventory_image = minetest.inventorycube("default_ice.png"),
 	drawtype = "glasslike",
 	paramtype = "light",
 	groups = {cracky=3},
-	--alpha = WATER_ALPHA,
 	sounds = default.node_sound_glass_defaults(),
 })
 

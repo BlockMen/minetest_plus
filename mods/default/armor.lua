@@ -40,7 +40,7 @@ default.armor_update = function(player, heal, list, old_hp)
 		local stack = armor_inv:get_stack("armor_"..v, 1)
 		if stack:get_count() > 0 then
 			if heal and old_hp~=nil and now_hp < old_hp then
-				local use = stack:get_definition().groups["armor_use"] or 9--0
+				local use = stack:get_definition().groups["armor_use"] or 0
 				local heal_p = stack:get_definition().groups["armor_heal"] or 0
 				local item = stack:get_name()
 				local damage_amount = (old_hp-now_hp)/2

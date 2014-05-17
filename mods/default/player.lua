@@ -51,8 +51,6 @@ model_def = {
 ]]
 
 default.player = {}
---default.player.armor = {}
-
 
 -- Player animation blending
 -- Note: This is currently broken due to a bug in Irrlicht, leave at 0
@@ -161,22 +159,19 @@ local function get_wielded(player, txtures)
 	end
 	txtures[3] = i_txt
 	txtures[4] = b_txt
-	--print(dump(i_txt))
 	return txtures, update
 end
 
 function default.player_set_textures(player, textures)
 	local name = player:get_player_name()
 	if not textures then
-		--local name = player:get_player_name()
 		textures = player_textures[name]
 	else
 		player_wielded[name] = ""
 	end
 	local new_textures = get_wielded(player, textures)
 	player_textures[name] = new_textures
-	--print(dump(new_textures))
-	player:set_properties({textures = new_textures,})
+	player:set_properties({textures = new_textures})
 end
 
 function default.player_set_animation(player, anim_name, speed)
@@ -270,9 +265,7 @@ minetest.register_globalstep(function(dtime)
 			end
 
 			-- Apply animations based on what the player is doing
-			if player:get_hp() == 0 then
-				player_set_animation(player, "lay")
-			elseif walking then
+			if walking then
 				if player_sneak[name] ~= controls.sneak then
 					player_anim[name] = nil
 					player_sneak[name] = controls.sneak

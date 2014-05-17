@@ -1,22 +1,5 @@
 -- mods/default/tools.lua
 
--- The hand
-minetest.register_item(":", {
-	type = "none",
-	wield_image = "wieldhand.png",
-	wield_scale = {x=1,y=1,z=2.5},
-	tool_capabilities = {
-		full_punch_interval = 0.9,
-		max_drop_level = 0,
-		groupcaps = {
-			crumbly = {times={[2]=3.00, [3]=0.70}, uses=0, maxlevel=1},
-			snappy = {times={[3]=0.40}, uses=0, maxlevel=1},
-			oddly_breakable_by_hand = {times={[1]=6.70,[2]=4.00,[3]=1.40,[4]=30.00}, uses=0, maxlevel=3}
-		},
-		damage_groups = {fleshy=1},
-	}
-})
-
 --
 -- Picks
 --
@@ -389,9 +372,11 @@ minetest.register_tool("default:hoe_diamond", {
 	end,
 })
 
---armor
--- Regisiter Head Armor
+--
+-- Armor
+--
 
+-- Head Armor
 minetest.register_tool("default:armor_helmet_wood", {
 	description = "Wood Helmet",
 	inventory_image = "default_armor_inv_helmet_wood.png",
@@ -420,8 +405,7 @@ minetest.register_tool("default:armor_helmet_diamond", {
 	wear = 0,
 })
 
--- Regisiter Torso Armor
-
+-- Torso Armor
 minetest.register_tool("default:armor_chestplate_wood", {
 	description = "Wood Chestplate",
 	inventory_image = "default_armor_inv_chestplate_wood.png",
@@ -450,8 +434,7 @@ minetest.register_tool("default:armor_chestplate_diamond", {
 	wear = 0,
 })
 
--- Regisiter Leg Armor
-
+-- Leg Armor
 minetest.register_tool("default:armor_leggings_wood", {
 	description = "Wood Leggings",
 	inventory_image = "default_armor_inv_leggings_wood.png",
@@ -480,8 +463,7 @@ minetest.register_tool("default:armor_leggings_diamond", {
 	wear = 0,
 })
 
--- Regisiter Boots
-
+-- Boots
 minetest.register_tool("default:armor_boots_wood", {
 	description = "Wood Boots",
 	inventory_image = "default_armor_inv_boots_wood.png",
@@ -511,8 +493,7 @@ minetest.register_tool("default:armor_boots_diamond", {
 })
 
 
--- Register Craft Recipies  default:armor_helmet_wood
-
+-- Register Craft Recipies
 local craft_ingreds = {
 	wood = "group:wood",
 	steel = "default:steel_ingot",
@@ -553,5 +534,3 @@ for k, v in pairs(craft_ingreds) do
 		},
 	})
 end
-
-

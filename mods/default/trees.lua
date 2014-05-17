@@ -5,11 +5,6 @@ local c_leaves = minetest.get_content_id("default:leaves")
 local c_apple = minetest.get_content_id("default:apple")
 
 function default.grow_tree(data, a, pos, is_apple_tree, seed)
-        --[[
-                NOTE: Tree-placing code is currently duplicated in the engine
-                and in games that have saplings; both are deprecated but not
-                replaced yet
-        ]]--
         local pr = PseudoRandom(seed)
         local th = pr:next(4, 5)
         local x, y, z = pos.x, pos.y, pos.z
@@ -153,4 +148,3 @@ function default.grow_conifer(x, y, z, area, data)
 	local vi = area:index(x, y+top-2, z)
 	data[vi] = c_needles
 end
-

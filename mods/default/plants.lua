@@ -222,7 +222,6 @@ for i=1,8 do
 end
 
 minetest.register_node("default:wild_wheat", {
-		--drawtype = "nodebox",
 		drawtype = "plantlike",
 		tiles = {"default_wheat_7.png"},
 		paramtype = "light",
