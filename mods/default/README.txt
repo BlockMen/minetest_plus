@@ -43,10 +43,6 @@ Cisoun's WTFPL texture pack:
   default_wool_*.png
 
 VanessaE (WTFPL):
-  default_nc_back.png
-  default_nc_front.png
-  default_nc_rb.png
-  default_nc_side.png
   default_desert_sand.png
   default_flour.png
   default_cotton_1.png
@@ -66,9 +62,6 @@ Calinou (CC BY-SA):
 
 philipbenr (GPLv3):
   default_brick.png
-
-MirceaKitsune (WTFPL):
-  character.x
 
 PilzAdam (WTFPL):
   default_junglesapling.png
@@ -91,8 +84,9 @@ Splizard (CC BY-SA 3.0):
 Zeg9 (CC BY-SA 3.0):
   default_coal_block.png
 
-BlockMen (CC-BY 3.0):
-  character.png (based on Jordach's texture)[CC-BY-SA 3.0]
+BlockMen (CC-BY 3.0):  
+  character.x (based on stu's 3d armor model)
+  character.png (based on Jordach's texture) [CC-BY-SA 3.0]
   default_tool_*.png
   door_steel_*.png
   default_cobble.png

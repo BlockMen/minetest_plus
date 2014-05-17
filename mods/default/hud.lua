@@ -239,8 +239,6 @@ minetest.register_on_joinplayer(function(player)
 	end
 	default.hud.armor[name] = 0
 	default.hud.armor_out[name] = 0
-	local air = player:get_breath()
-	default.hud.air[name] = air
 	minetest.after(0.1, function()
 		hide_builtin(player)
 		custom_hud(player)

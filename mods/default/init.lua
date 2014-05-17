@@ -27,6 +27,7 @@ dofile(minetest.get_modpath("default").."/sounds.lua")
 dofile(minetest.get_modpath("default").."/nodes.lua")
 dofile(minetest.get_modpath("default").."/plants.lua")
 dofile(minetest.get_modpath("default").."/mapgen.lua")
+dofile(minetest.get_modpath("default").."/aliases.lua")
 
 if load_more then
 	dofile(minetest.get_modpath("default").."/tools.lua")
