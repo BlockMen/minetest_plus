@@ -167,6 +167,7 @@ local function update_hud(player, item)
 	local arm = tonumber(default.hud.armor[name])
 	if not arm then arm = 0 end
 	if item == "armor" and arm_out ~= arm then
+		default.armor_update_visual(player)
 		default.hud.armor_out[name] = arm
 		player:hud_change(armor_hud[name], "number", arm)
 		if (default.player[name].armor["cnt"] == 0) and arm == 0 then
@@ -257,7 +258,7 @@ minetest.register_on_joinplayer(function(player)
 	default.hud.armor_out[name] = 0
 	local air = player:get_breath()
 	default.hud.air[name] = air
-	minetest.after(0.5, function()
+	minetest.after(0.1, function()
 		hide_builtin(player)
 		custom_hud(player)
 		if HUD_ENABLE_HUNGER then default.hud.set_hunger(player) end

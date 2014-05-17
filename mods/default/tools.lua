@@ -402,7 +402,7 @@ minetest.register_tool("default:armor_helmet_wood", {
 minetest.register_tool("default:armor_helmet_steel", {
 	description = "Steel Helmet",
 	inventory_image = "default_armor_inv_helmet_steel.png",
-	groups = {armor_head=10, armor_heal=0, armor_use=500},
+	groups = {armor_head=10, armor_heal=2, armor_use=500},
 	wear = 0,
 })
 
@@ -432,7 +432,7 @@ minetest.register_tool("default:armor_chestplate_wood", {
 minetest.register_tool("default:armor_chestplate_steel", {
 	description = "Steel Chestplate",
 	inventory_image = "default_armor_inv_chestplate_steel.png",
-	groups = {armor_torso=15, armor_heal=0, armor_use=500},
+	groups = {armor_torso=15, armor_heal=2, armor_use=500},
 	wear = 0,
 })
 
@@ -462,7 +462,7 @@ minetest.register_tool("default:armor_leggings_wood", {
 minetest.register_tool("default:armor_leggings_steel", {
 	description = "Steel Leggings",
 	inventory_image = "default_armor_inv_leggings_steel.png",
-	groups = {armor_legs=15, armor_heal=0, armor_use=500},
+	groups = {armor_legs=15, armor_heal=2, armor_use=500},
 	wear = 0,
 })
 
@@ -492,7 +492,7 @@ minetest.register_tool("default:armor_boots_wood", {
 minetest.register_tool("default:armor_boots_steel", {
 	description = "Steel Boots",
 	inventory_image = "default_armor_inv_boots_steel.png",
-	groups = {armor_feet=10, armor_heal=0, armor_use=500},
+	groups = {armor_feet=10, armor_heal=2, armor_use=500},
 	wear = 0,
 })
 

@@ -236,6 +236,8 @@ minetest.register_on_joinplayer(function(player)
 	else
 		default.set_player_inventory(player)
 	end
+	-- sometimes the model get not applied correct, so do it again
+	minetest.after(0, default.player_set_model, player, "character.x")
 end)
 
 -- Localize for better performance.
