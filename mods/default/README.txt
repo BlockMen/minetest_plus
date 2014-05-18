@@ -15,11 +15,20 @@ http://www.gnu.org/licenses/lgpl-2.1.html
 PilzAdam (WTFPL):
   most parts of farming code
 
+Ryan Jones/stu (LGPL):
+  most parts of armor.lua
+  armor in tools.lua
+
+paramat (WTFPL):
+  jungle.lua
+
 BlockMen (WTFPL):
   torches.lua
   intweak.lua
+  hud.lua
+  hunger.lua
 
-Copyright (C) 2013 BlockMen, WTFPL
+Copyright (C) 2013-2014 BlockMen, WTFPL
 
 
 License of media (textures and sounds)
@@ -83,6 +92,9 @@ Splizard (CC BY-SA 3.0):
 
 Zeg9 (CC BY-SA 3.0):
   default_coal_block.png
+
+Ryan Jones (stu) (CC-BY-SA):
+  default_armor_*.png
 
 BlockMen (CC-BY 3.0):  
   character.x (based on stu's 3d armor model)
