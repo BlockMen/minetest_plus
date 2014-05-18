@@ -36,6 +36,7 @@ Changed Behavior:
 - Dirt with snow turns into Dirt with Grass when snow is digged
 - Doors have sounds
 - Torches can't be placed ceiling
+- Items get removed after 30 minutes
 
 Other changes:
 - Visible wielded 3d blocks (experimental)

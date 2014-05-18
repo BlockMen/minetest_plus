@@ -93,3 +93,4 @@ Version 0.9:
 - Tweaked a few textures
 - Cleaned up code a bit
 - Updates torches (less lags)
+- Items get removed after 30 minutes
