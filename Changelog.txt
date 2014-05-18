@@ -92,3 +92,4 @@ Version 0.9:
 - Support for third person view
 - Tweaked a few textures
 - Cleaned up code a bit
+- Updates torches (less lags)

@@ -194,13 +194,16 @@ end})
 local null = {x=0, y=0, z=0}
 
 --fire_particles
-function default.add_fire(pos, scale)
+function default.add_fire(pos, scale, duration)
 	if scale == nil then scale =  1 end
+	if not duration or duration < 1 then
+		duration = 1.1
+	end
 	pos.y = pos.y+0.19
-	minetest.add_particle(pos, null, null, 1.1,
+	minetest.add_particle(pos, null, null, duration,
    					1.5*scale, true, "default_fire"..tostring(math.random(1,2)) ..".png")
 	pos.y = pos.y +0.01
-	minetest.add_particle(pos, null, null, 0.8,
+	minetest.add_particle(pos, null, null, duration-0.3,
    					1.5*scale, true, "default_fire"..tostring(math.random(1,2)) ..".png")
 end
 
