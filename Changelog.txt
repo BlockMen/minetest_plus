@@ -94,3 +94,6 @@ Version 0.9:
 - Cleaned up code a bit
 - Updates torches (less lags)
 - Items get removed after 30 minutes
+
+Version 0.9.1
+- Fix possible crash by wrong values for light calculation

@@ -1,6 +1,6 @@
 Minetest+ [minetest_plus]
 =========
-Version 0.9
+Version 0.9.1
 
 About this game
 ---------------
