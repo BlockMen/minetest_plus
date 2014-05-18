@@ -1,93 +1,64 @@
-Minetest+  -  a game for the Minetest game engine [based on minetest_game]
+Minetest+ [minetest_plus]
 =========
-Version 0.8
+Version 0.9
 
 About this game
 ---------------
-Minetest+ tries to be as near as possible at the default game (Minetest_game), but with a few improved things and a few new features.
+Minetest+ aims to be a more developed game with more features, blocks and a lot tweaking everywhere.
 
 
-Version 0.1:
+
 New items:
 - Charcoal (by putting a tree log in furnace) (1 tree -> 1 charcoal)
-- Hardened Clay (by putting a clay block in furnace) (1 clayblock -> 1 hardened clay)
+- Mese and Diamond hoe
+- glass, obsidian glass and trap doors
+- Armor (mainly by stu's mod)
+- Conifer (Tree, Planks)
+
 Changed Appearance:
+- New Textures for almost everything
 - Cactus have spikes
-- Ice is semi-transparent
 - Water has a better color and brightness (under water aswell)
-- Glass is semi-transparent
+- fancy HUD, Invenotries
+- Mese is glowing
+
 Changed Behavior:
 - Flowing water makes sound
 - Lava makes sound and spawns randomly particles
-- Cactus damage Players [Mobs not tested yet]
+- Cactus damages players
 - You get 4 Stonebricks instead 1 Stonebrick
 - Torches can also be crafted with charcoal
-- Leaves dont decay when placed by player
+- Leaves don't decay when placed by player
+- chests drop stuff when digged
+- grass and flowers are digged immediate
+- grass only drops seeds, not itself
+- player damage sound
 - Dirt with snow turns into Dirt with Grass when snow is digged
-
-Furthermore this game has fancy 3d torches, based on my torches mod and it includes the doors mod aswell the intweak mod.
+- Doors have sounds
+- Torches can't be placed ceiling
 
 Other changes:
-- chests drop stuff when digged
-- removed bones mod
-- new character texture
-
-Version 0.2:
-- grass and flowers get digged immediate
-- more grass is spawned
-- uses new damage sound
-- tweaked textures of grass, water and papyrus
-
-Version 0.3:
+- Visible wielded 3d blocks (experimental)
 - reworked furnaces (have flames which size shows left burntime, progress for each item)
-- added mese- and diamondhoe for farming
-- added HUD-mod (with hunger)
-
-Version 0.4:
-- enabled jungles
-- added PilzAdam's builtin_item mod
 - tweaked physics
-- updated hud mod (0.4)
-- fixed intweak bug
-- added several commits from minetest_game
-
-Version 0.5:
-- updated several mods
-- disabled hunger by default
-- removed semi-transparent glass
-- tweaked textures of grass, torch, leaves
-- removed rat, cooked rat and sorched stuff from inventory
-- drowning damages player more (is drowning faster)
-
-Version 0.6:
+- Jungles (using paramat's rainforrest mod)
+- drowning damages player more
 - Rework of inventorys, add new creative inventory
 - Slow down fire a bit
 - Tweak digging times of some tools
-- Improved textures for jungletree, -wood, torch(inventory)
 - Dropped items also rotate and 3D
-- Tweaked menu image a bit
-- Add abms for trees, grass, etc
-- Update stairs mod
-- Remove hardened clay
-- and a few more smaller tweaks
+- Removed nyancat, and old/unused stuff)
 
-Version 0.7:
-- Add stu's armor mod
-- Add parts of webdesigner97's fire_plus mod (breaking glass, punching hurts player)
+Included mods (more or less modified):
+- PilzAdam's builtin_item mod (water pushes items)
+- stu's 3d_armor mod
+- webdesigner97's fire_plus mod (breaking glass, punching hurts player)
+- paramat's rainforest mod
+- (Doors mod)
+- (Better HUD)
+- (Torches)
+- (Default Plus)
 
-Version 0.8:
-- Allow armor only in correct slots
-- Updated doors mod (added obsidian glass door)
-- Complete textures overhaul
-- Mese glows now
-- Ice is not transparent anymore
-- Got rid nyan cats
-- new hand
-- Restructured game; farming and wool part of default now
-- Switched HUD bar positions
-- Added wild wheat (drops seeds and most time wheat)
-- Added snow caps (if player is higher than 24(+0 to 4) blocks from water level)
-- Support for new waving shaders
 
 
 Have fun!
@@ -96,7 +67,7 @@ Have fun!
 License of source code
 ----------------------
 Copyright (C) 2010-2012 celeron55, Perttu Ahola <celeron55@gmail.com>
-Modyfied and extended by BlockMen 2013
+Modyfied and extended by BlockMen 2013-2014
 
 See README.txt in each mod directory for information about other authors.
 
