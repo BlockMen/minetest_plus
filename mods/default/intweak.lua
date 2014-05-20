@@ -103,3 +103,11 @@ minetest.register_on_dignode(function(pos, oldnode, digger)
 		end
 	end
 end)
+
+minetest.register_on_placenode(function(pos, newnode, placer)--, oldnode, itemstack, pointed_thing))
+	if not placer then
+		return
+	end
+	local name = placer:get_player_name()
+	default.player_exhaustion[name] = default.player_exhaustion[name] + 0.7
+end)

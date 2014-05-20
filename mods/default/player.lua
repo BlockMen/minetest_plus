@@ -262,6 +262,7 @@ minetest.register_globalstep(function(dtime)
 			-- Determine if the player is walking
 			if controls.up or controls.down or controls.left or controls.right then
 				walking = true
+				player_exhaustion[name] = player_exhaustion[name] + 0.002
 			end
 
 			-- Determine if the player is sneaking, and reduce animation speed if so
@@ -289,7 +290,7 @@ minetest.register_globalstep(function(dtime)
 			-- sprint
 			if controls.up and controls.left and controls.right then
 				player_set_sprint(player, true)
-				player_exhaustion[name] = player_exhaustion[name] + 1
+				player_exhaustion[name] = player_exhaustion[name] + 0.11
 			else
 				player_set_sprint(player, false)
 			end

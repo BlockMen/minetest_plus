@@ -1,5 +1,5 @@
 -- hunger mechanics
-local exhaus_max = 20
+local exhaus_max = 25
 local main_timer = 0
 local timer = 0
 local timer2 = 0
@@ -21,6 +21,8 @@ minetest.after(2.5, function()
 				default.player_exhaustion[name] = 0
 				if h - 1 >= 0 then
 					h = h-1
+					default.hud.hunger[name] = h
+					default.hud.set_hunger(player)
 				end
 			 end
 			 local hp = player:get_hp()
