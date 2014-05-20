@@ -1,5 +1,5 @@
 -- hunger mechanics
-
+local exhaus_max = 20
 local main_timer = 0
 local timer = 0
 local timer2 = 0
@@ -16,6 +16,13 @@ minetest.after(2.5, function()
 			-- only proceed if damage is enabled
 			if minetest.setting_getbool("enable_damage") then
 			 local h = tonumber(default.hud.hunger[name])
+			 local exhaus = default.player_exhaustion[name]
+			 if exhaus > exhaus_max then
+				default.player_exhaustion[name] = 0
+				if h - 1 >= 0 then
+					h = h-1
+				end
+			 end
 			 local hp = player:get_hp()
 			 local air = player:get_breath()
 			 if HUD_ENABLE_HUNGER and timer > 4 then

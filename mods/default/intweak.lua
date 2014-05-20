@@ -64,6 +64,8 @@ minetest.register_on_dignode(function(pos, oldnode, digger)
 	local tname = item:get_name()
 	local def = minetest.registered_tools[tname]
 
+	default.player_exhaustion[name] = default.player_exhaustion[name] + 1
+
 	if not item then
 		return
 	end

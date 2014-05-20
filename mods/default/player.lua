@@ -89,6 +89,9 @@ local player_sneak = {}
 local player_sprint = {}
 local player_wielded = {}
 
+default.player_exhaustion = {}
+local player_exhaustion = default.player_exhaustion
+
 function default.player_get_animation(player)
 	local name = player:get_player_name()
 	return {
@@ -223,7 +226,8 @@ end
 
 -- Update appearance and formspec when the player joins
 minetest.register_on_joinplayer(function(player)
-	default.player[player:get_player_name()] = {}--player
+	local name = player:get_player_name()
+	default.player[name] = {}--player
 	default.player_set_model(player, "character.x")
 	player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 22)--18 for sneaking perfect
 	if minetest.setting_getbool("creative_mode") then
@@ -233,6 +237,7 @@ minetest.register_on_joinplayer(function(player)
 	end
 	-- sometimes the model get not applied correct, so do it again
 	minetest.after(0, default.player_set_model, player, "character.x")
+	player_exhaustion[name] = 0
 end)
 
 -- Localize for better performance.
@@ -284,6 +289,7 @@ minetest.register_globalstep(function(dtime)
 			-- sprint
 			if controls.up and controls.left and controls.right then
 				player_set_sprint(player, true)
+				player_exhaustion[name] = player_exhaustion[name] + 1
 			else
 				player_set_sprint(player, false)
 			end
