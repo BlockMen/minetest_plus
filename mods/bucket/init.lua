@@ -15,6 +15,14 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'bucket:wooden_bucket_empty 1',
+	recipe = {
+		{'group:wood', '', 'group:wood'},
+		{'', 'group:wood', ''},
+	}
+})
+
 bucket = {}
 bucket.liquids = {}
 
@@ -24,7 +32,7 @@ bucket.liquids = {}
 --   itemname = name of the new bucket item (or nil if liquid is not takeable)
 --   inventory_image = texture of the new bucket item (ignored if itemname == nil)
 -- This function can be called from any mod (that depends on bucket).
-function bucket.register_liquid(source, flowing, itemname, inventory_image, name)
+function bucket.register_liquid(source, flowing, itemname, inventory_image, name, replace_item)
 	bucket.liquids[source] = {
 		source = source,
 		flowing = flowing,
@@ -90,14 +98,14 @@ function bucket.register_liquid(source, flowing, itemname, inventory_image, name
 						return
 					end
 				end
-				return {name="bucket:bucket_empty"}
+				return {name=replace_item}
 			end
 		})
 	end
 end
 
 minetest.register_craftitem("bucket:bucket_empty", {
-	description = "Empty Bucket",
+	description = "Steel Bucket",
 	inventory_image = "bucket.png",
 	stack_max = 1,
 	liquids_pointable = true,
@@ -120,12 +128,46 @@ minetest.register_craftitem("bucket:bucket_empty", {
 	end,
 })
 
+minetest.register_craftitem("bucket:wooden_bucket_empty", {
+	description = "Wooden Bucket",
+	inventory_image = "bucket_wooden.png",
+	stack_max = 1,
+	liquids_pointable = true,
+	on_use = function(itemstack, user, pointed_thing)
+		-- Must be pointing to node
+		if pointed_thing.type ~= "node" then
+			return
+		end
+		-- Check if pointing to a liquid source
+		node = minetest.get_node(pointed_thing.under)
+		if node and node.name and node.name:find("lava") ~= nil then
+			minetest.sound_play("builtin_item_lava", {
+				pos = user:getpos(),
+				gain = 0.3,
+				max_hear_distance = 3
+			})
+			itemstack:take_item()
+			return itemstack
+		end
+		liquiddef = bucket.liquids[node.name]
+		if liquiddef ~= nil and liquiddef.itemname ~= nil and (node.name == liquiddef.source or
+			(node.name == liquiddef.flowing and minetest.setting_getbool("liquid_finite"))) then
+
+			minetest.add_node(pointed_thing.under, {name="air"})
+
+			if node.name == liquiddef.source then node.param2 = LIQUID_MAX end
+			return ItemStack({name = liquiddef.itemname, metadata = tostring(node.param2)})
+		end
+	end,
+})
+
 bucket.register_liquid(
 	"default:water_source",
 	"default:water_flowing",
 	"bucket:bucket_water",
 	"bucket_water.png",
-	"Water Bucket"
+	"Water Bucket",
+	"bucket:bucket_empty"
 )
 
 bucket.register_liquid(
@@ -133,7 +175,17 @@ bucket.register_liquid(
 	"default:lava_flowing",
 	"bucket:bucket_lava",
 	"bucket_lava.png",
-	"Lava Bucket"
+	"Lava Bucket",
+	"bucket:bucket_empty"
+)
+
+bucket.register_liquid(
+	"default:water_source",
+	"default:water_flowing",
+	"bucket:wooden_bucket_water",
+	"bucket_wooden_water.png",
+	"Wooden Water Bucket",
+	"bucket:wooden_bucket_empty"
 )
 
 minetest.register_craft({
